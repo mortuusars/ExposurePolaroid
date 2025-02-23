@@ -1,0 +1,38 @@
+architectury {
+    common(rootProject.enabled_platforms.split(","))
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/${mod_id}.accesswidener")
+}
+
+configurations {
+    create("junit")
+}
+
+repositories {
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
+}
+
+dependencies {
+    // We depend on Fabric Loader here to use the Fabric @Environment annotations,
+    // which get remapped to the correct annotations on each platform.
+    // Do NOT use other classes from Fabric Loader.
+    modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+
+    modImplementation("io.github.mortuusars.exposure:exposure-common:${minecraft_version}-${exposure_version}")
+
+    testImplementation(platform("org.junit:junit-bom:${project.property("jupiterVersion")}"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    "junit"(platform("org.junit:junit-bom:${project.property("jupiterVersion")}"))
+    "junit"("org.junit.jupiter:junit-jupiter")
+}
+
+tasks {
+    test {
+        useJUnitPlatform()
+    }
+}

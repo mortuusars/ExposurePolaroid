@@ -1,0 +1,83 @@
+plugins {
+    id "com.github.johnrengelman.shadow"
+}
+
+architectury {
+    platformSetupLoomIde()
+    neoForge()
+}
+
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentNeoForge.extendsFrom common
+
+    // Files in this configuration will be bundled into your mod using the Shadow plugin.
+    // Don't use the `shadow` configuration from the plugin itself as it's meant for excluding files.
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+repositories {
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
+    maven {
+        // Location of the maven for mixed mappings, Registrate, and Flywheel
+        name 'tterrag maven'
+        url 'https://maven.tterrag.com'
+    }
+    maven {
+        url 'https://www.cursemaven.com'
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
+
+dependencies {
+    neoForge "net.neoforged:neoforge:${neoforge_version}"
+
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+    implementation(include("io.github.llamalad7:mixinextras-neoforge:0.4.1"))
+
+    modImplementation("io.github.mortuusars.exposure:exposure-neoforge:${minecraft_version}-${exposure_version}")
+
+    modRuntimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}") { transitive = false }
+//    modRuntimeOnly("io.github.mortuusars.exposure_catalog:exposure_catalog-neoforge:${minecraft_version}-${exposure_catalog_version}")
+
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    shadowBundle(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive = false }
+}
+
+loom {
+    runs {
+        create("client2") {
+            inherit(getByName("client"))
+
+            name("Second Client")
+            programArgs("--username", "AnotherDev")
+
+            client()
+        }
+    }
+}
+
+shadowJar {
+    exclude("architectury.common.json")
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = 'dev-shadow'
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
+    dependsOn shadowJar
+}
