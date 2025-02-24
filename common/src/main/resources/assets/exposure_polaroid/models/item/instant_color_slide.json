@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "exposure_polaroid:item/instant_color_slide"
+  }
+}

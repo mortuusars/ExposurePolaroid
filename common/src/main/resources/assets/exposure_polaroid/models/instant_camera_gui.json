@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "exposure_polaroid:item/instant_camera_gui"
+  },
+  "gui_light": "front"
+}

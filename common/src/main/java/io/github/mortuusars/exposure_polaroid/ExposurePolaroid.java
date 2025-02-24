@@ -2,10 +2,17 @@ package io.github.mortuusars.exposure_polaroid;
 
 import com.google.common.base.Preconditions;
 import com.mojang.logging.LogUtils;
+import io.github.mortuusars.exposure.Exposure;
+import io.github.mortuusars.exposure.world.camera.ExposureType;
+import io.github.mortuusars.exposure.world.item.camera.Shutter;
+import io.github.mortuusars.exposure_polaroid.world.item.InstantCameraItem;
+import io.github.mortuusars.exposure_polaroid.world.item.InstantSlideItem;
+import io.github.mortuusars.exposure_polaroid.world.item.camera.InstantCameraShutter;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.stats.StatFormatter;
+import net.minecraft.world.item.Item;
 import org.slf4j.Logger;
 
 import java.util.HashMap;
@@ -49,6 +56,15 @@ public class ExposurePolaroid {
     }
 
     public static class Items {
+        public static final Supplier<InstantCameraItem> INSTANT_CAMERA = Register.item("instant_camera",
+                () -> new InstantCameraItem(new InstantCameraShutter(), new Item.Properties()
+                        .stacksTo(1)
+                        .component(Exposure.DataComponents.CAMERA_ACTIVE, false)));
+
+        public static final Supplier<InstantSlideItem> INSTANT_COLOR_SLIDE = Register.item("instant_color_slide",
+                () -> new InstantSlideItem(ExposureType.COLOR, new Item.Properties()));
+        public static final Supplier<InstantSlideItem> INSTANT_BLACK_AND_WHITE_SLIDE = Register.item("instant_black_and_white_slide",
+                () -> new InstantSlideItem(ExposureType.BLACK_AND_WHITE, new Item.Properties()));
 
         static void init() {
         }
@@ -75,6 +91,10 @@ public class ExposurePolaroid {
     }
 
     public static class SoundEvents {
+        public static final Supplier<SoundEvent> INSTANT_CAMERA_VIEWFINDER_OPEN = register("item", "instant_camera.viewfinder_open");
+        public static final Supplier<SoundEvent> INSTANT_CAMERA_VIEWFINDER_CLOSE = register("item", "instant_camera.viewfinder_close");
+        public static final Supplier<SoundEvent> INSTANT_CAMERA_RELEASE = register("item", "instant_camera.release");
+        public static final Supplier<SoundEvent> INSTANT_CAMERA_SLIDE_INSERT = register("item", "instant_camera.slide_insert");
 
         private static Supplier<SoundEvent> register(String category, String key) {
             Preconditions.checkState(category != null && !category.isEmpty(), "'category' should not be empty.");
