@@ -1,7 +1,7 @@
 package io.github.mortuusars.exposure_polaroid.network.fabric;
 
+import io.github.mortuusars.exposure.network.packet.Packet;
 import io.github.mortuusars.exposure_polaroid.network.packet.CommonPackets;
-import io.github.mortuusars.exposure_polaroid.network.packet.Packet;
 import io.github.mortuusars.exposure_polaroid.network.packet.S2CPackets;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.network.protocol.PacketFlow;

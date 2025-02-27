@@ -3,7 +3,7 @@
     "sounds": [
       {
         "name": "exposure_polaroid:item/instant_camera_viewfinder",
-        "volume": 0.8,
+        "volume": 1.0,
         "pitch": 1.1
       }
     ],
@@ -13,7 +13,7 @@
     "sounds": [
       {
         "name": "exposure_polaroid:item/instant_camera_viewfinder",
-        "volume": 0.7,
+        "volume": 0.9,
         "pitch": 0.85
       }
     ],

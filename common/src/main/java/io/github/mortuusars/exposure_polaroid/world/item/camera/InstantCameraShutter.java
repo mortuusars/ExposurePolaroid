@@ -10,7 +10,7 @@ public class InstantCameraShutter extends Shutter {
     @Override
     public void playOpenSound(CameraHolder holder) {
         Entity entity = holder.asEntity();
-        Sound.play(entity, ExposurePolaroid.SoundEvents.INSTANT_CAMERA_RELEASE.get(), entity.getSoundSource(), 1f, 1.0f, 0.2f);
+        Sound.play(entity, ExposurePolaroid.SoundEvents.INSTANT_CAMERA_RELEASE.get(), entity.getSoundSource(), 1.2f, 1.0f, 0.2f);
     }
 
     @Override

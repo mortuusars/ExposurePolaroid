@@ -12,7 +12,7 @@ import net.minecraft.util.Mth;
 public class InstantCameraViewfinderZoom extends ViewfinderZoom {
     public InstantCameraViewfinderZoom(Camera camera, Viewfinder viewfinder) {
         super(camera, viewfinder);
-        animation = new Animation(100, EasingFunction.EASE_OUT_EXPO);
+        this.animation = new Animation(100, EasingFunction.EASE_OUT_EXPO);
     }
 
     @Override

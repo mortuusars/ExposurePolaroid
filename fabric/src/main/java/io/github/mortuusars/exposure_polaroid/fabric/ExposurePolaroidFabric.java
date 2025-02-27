@@ -1,6 +1,7 @@
 package io.github.mortuusars.exposure_polaroid.fabric;
 
-import io.github.mortuusars.exposure.ExposureClient;
+import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry;
+import io.github.mortuusars.exposure_polaroid.Config;
 import io.github.mortuusars.exposure_polaroid.ExposurePolaroid;
 import io.github.mortuusars.exposure_polaroid.ExposurePolaroidClient;
 import io.github.mortuusars.exposure_polaroid.network.fabric.FabricC2SPackets;
@@ -10,11 +11,15 @@ import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.neoforged.fml.config.ModConfig;
 
 public class ExposurePolaroidFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         ExposurePolaroid.init();
+
+        NeoForgeConfigRegistry.INSTANCE.register(ExposurePolaroid.ID, ModConfig.Type.SERVER, Config.Server.SPEC);
+        NeoForgeConfigRegistry.INSTANCE.register(ExposurePolaroid.ID, ModConfig.Type.CLIENT, Config.Client.SPEC);
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(content -> {
             content.accept(ExposurePolaroid.Items.INSTANT_CAMERA.get());

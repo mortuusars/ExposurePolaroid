@@ -43,7 +43,9 @@ public class InstantCameraControlsScreen extends ViewfinderCameraControlsScreen 
 
         boolean hasFlash = camera.map(CameraItem::hasFlash).orElse(false);
 
-        int elementX = leftPos + 128 - (BUTTON_WIDTH / 2 + 1 + BUTTON_WIDTH + 1 + (hasFlash ? BUTTON_WIDTH + 1 : 0) + SIDE_BUTTONS_WIDTH) / 2;
+        int widgetsWidth = SIDE_BUTTONS_WIDTH + 1 + (hasFlash ? BUTTON_WIDTH + 1 : 0) + SIDE_BUTTONS_WIDTH;
+
+        int elementX = leftPos + 128 - (widgetsWidth / 2);
         int elementY = topPos + 238;
 
         // Order of adding influences TAB key behavior
@@ -75,7 +77,7 @@ public class InstantCameraControlsScreen extends ViewfinderCameraControlsScreen 
     }
 
     protected Button createExposureSliderButton(int elementY) {
-        ExposureSliderButton exposureSliderButton = new ExposureSliderButton(leftPos + 88, elementY - BUTTON_HEIGHT, camera);
+        ExposureSliderButton exposureSliderButton = new ExposureSliderButton(leftPos + 88, elementY - 15, camera);
         exposureSliderButton.setTooltip(Tooltip.create(Component.translatable("gui.exposure_polaroid.camera_controls.exposure_slider.tooltip")));
         return exposureSliderButton;
     }

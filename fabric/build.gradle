@@ -46,9 +46,9 @@ dependencies {
     implementation(include("io.github.llamalad7:mixinextras-neoforge:0.4.1"))
 
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
+    modImplementation("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_port_version}")
     modImplementation("io.github.mortuusars.exposure:exposure-fabric:${minecraft_version}-${exposure_version}")
 
-    modRuntimeOnly "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_port_version}"
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
     modRuntimeOnly("io.github.mortuusars.exposure_catalog:exposure_catalog-fabric:${minecraft_version}-${exposure_catalog_version}")
 

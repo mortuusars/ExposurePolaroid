@@ -1,6 +1,5 @@
 package io.github.mortuusars.exposure_polaroid.world.item;
 
-import io.github.mortuusars.exposure.Config;
 import io.github.mortuusars.exposure.Exposure;
 import io.github.mortuusars.exposure.ExposureServer;
 import io.github.mortuusars.exposure.data.Lenses;
@@ -21,10 +20,12 @@ import io.github.mortuusars.exposure.world.item.camera.Attachment;
 import io.github.mortuusars.exposure.world.item.camera.CameraItem;
 import io.github.mortuusars.exposure.world.item.camera.CameraSettings;
 import io.github.mortuusars.exposure.world.item.camera.Shutter;
+import io.github.mortuusars.exposure.world.item.component.StoredItemStack;
 import io.github.mortuusars.exposure.world.item.util.ItemAndStack;
 import io.github.mortuusars.exposure.world.level.LevelUtil;
 import io.github.mortuusars.exposure.world.level.storage.ExposureIdentifier;
 import io.github.mortuusars.exposure.world.sound.Sound;
+import io.github.mortuusars.exposure_polaroid.Config;
 import io.github.mortuusars.exposure_polaroid.ExposurePolaroid;
 import io.github.mortuusars.exposure_polaroid.world.camera.PolaroidFrameExtraData;
 import io.github.mortuusars.exposure_polaroid.world.item.camera.InstantCameraAttachment;
@@ -37,14 +38,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
@@ -112,6 +114,11 @@ public class InstantCameraItem extends CameraItem {
     }
 
     @Override
+    public double getYPositionOffset(ItemStack stack) {
+        return 0;
+    }
+
+    @Override
     public float getCropFactor() {
         return 0.75f;
     }
@@ -124,11 +131,16 @@ public class InstantCameraItem extends CameraItem {
         return InstantCameraAttachment.INSTANT_SLIDE.get(stack).getForReading().getCount();
     }
 
+    @Override
+    public boolean hasFlash(ItemStack stack) {
+        return true;
+    }
+
     // --
 
     @Override
     public boolean isBarVisible(@NotNull ItemStack stack) {
-        return InstantCameraAttachment.INSTANT_SLIDE.map(stack, s -> true).orElse(false);
+        return Config.Client.INSTANT_CAMERA_SHOW_FULLNESS_BAR_ON_ITEM.get() && !InstantCameraAttachment.INSTANT_SLIDE.isEmpty(stack);
     }
 
     @Override
@@ -142,14 +154,17 @@ public class InstantCameraItem extends CameraItem {
 
     @Override
     public int getBarColor(@NotNull ItemStack stack) {
-        return InstantCameraAttachment.INSTANT_SLIDE.map(stack, InstantSlideItem::getBarColor).orElse(0);
+        ItemStack slide = InstantCameraAttachment.INSTANT_SLIDE.get(stack).getForReading();
+        int max = getMaxSlideCount();
+        float f = Math.max(0.0F, ((float)slide.getCount()) / (float)max);
+        return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
     }
 
     // --
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> components, TooltipFlag tooltipFlag) {
-        if (Config.Client.CAMERA_SHOW_FILM_FRAMES_IN_TOOLTIP.get()) {
+        if (Config.Client.INSTANT_CAMERA_SHOW_SLIDES_COUNT_IN_TOOLTIP.get()) {
             InstantCameraAttachment.INSTANT_SLIDE.ifPresent(stack, (slideItem, slideStack) -> {
                 int exposed = slideStack.getCount();
                 int max = getMaxSlideCount();
@@ -157,7 +172,7 @@ public class InstantCameraItem extends CameraItem {
             });
         }
 
-        if (Config.Client.CAMERA_SHOW_TOOLTIP_DETAILS.get()) {
+        if (Config.Client.INSTANT_CAMERA_SHOW_TOOLTIP_DETAILS.get()) {
             if (Screen.hasShiftDown()) {
                 components.add(Component.translatable("item.exposure_polaroid.instant_camera.tooltip.details_insert"));
             } else {
@@ -177,8 +192,10 @@ public class InstantCameraItem extends CameraItem {
             return true;
         }
 
+        StoredItemStack slideStack = InstantCameraAttachment.INSTANT_SLIDE.get(stack);
+
         if (InstantCameraAttachment.INSTANT_SLIDE.matches(otherStack)) {
-            ItemStack stored = InstantCameraAttachment.INSTANT_SLIDE.get(stack).getForReading();
+            ItemStack stored = slideStack.getForReading();
             int availableSlots = Math.max(0, getMaxSlideCount() - stored.getCount());
 
             if (availableSlots == 0 || (!stored.isEmpty() && !ItemStack.isSameItemSameComponents(stored, otherStack))) {
@@ -196,10 +213,11 @@ public class InstantCameraItem extends CameraItem {
             return true;
         }
 
-        if (otherStack.isEmpty()) {
-            access.set(InstantCameraAttachment.INSTANT_SLIDE.get(stack).getCopy());
+        if (otherStack.isEmpty() && !slideStack.isEmpty()) {
+            access.set(slideStack.getCopy());
             InstantCameraAttachment.INSTANT_SLIDE.set(stack, ItemStack.EMPTY);
-            player.level().playSound(player, player, ExposurePolaroid.SoundEvents.INSTANT_CAMERA_VIEWFINDER_OPEN.get(), SoundSource.PLAYERS, 0.9f, 1f);;
+            player.level().playSound(player, player, ExposurePolaroid.SoundEvents.INSTANT_CAMERA_VIEWFINDER_OPEN.get(),
+                    SoundSource.PLAYERS, 0.9f, 1f);
             return true;
         }
 
@@ -215,7 +233,7 @@ public class InstantCameraItem extends CameraItem {
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         super.inventoryTick(stack, level, entity, slotId, isSelected);
 
-        if (!(entity instanceof Player player) || !(level instanceof ServerLevel serverLevel)) return;
+        if (!(entity instanceof Player player)) return;
 
         @Nullable Frame frame = stack.get(Exposure.DataComponents.PHOTOGRAPH_FRAME);
         if (!player.getCooldowns().isOnCooldown(stack.getItem())
@@ -231,42 +249,42 @@ public class InstantCameraItem extends CameraItem {
             ItemStack photograph = new ItemStack(Exposure.Items.PHOTOGRAPH.get());
             photograph.set(Exposure.DataComponents.PHOTOGRAPH_FRAME, frame);
 
-            for (int i = 0; i < player.getInventory().items.size(); i++) {
-                ItemStack item = player.getInventory().getItem(i);
+            for (int slot = 0; slot < player.getInventory().items.size(); slot++) {
+                ItemStack item = player.getInventory().getItem(slot);
                 if (item.getItem() instanceof PhotographItem) {
                     StackedPhotographsItem stackedPhotographsItem = Exposure.Items.STACKED_PHOTOGRAPHS.get();
                     ItemStack stackedPhotographsStack = new ItemStack(stackedPhotographsItem);
 
                     stackedPhotographsItem.addPhotographOnTop(stackedPhotographsStack, item);
                     stackedPhotographsItem.addPhotographOnTop(stackedPhotographsStack, photograph);
-                    player.getInventory().setItem(i, stackedPhotographsStack);
 
-                    level.playSound(null, player, SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.3f,
-                            level.getRandom().nextFloat() * 0.2f + 0.9f);
-                    level.playSound(null, player, Exposure.SoundEvents.PHOTOGRAPH_RUSTLE.get(), SoundSource.PLAYERS, 0.6f,
+                    player.getInventory().setItem(slot, stackedPhotographsStack);
+                    stackedPhotographsStack.setPopTime(Inventory.POP_TIME_DURATION);
+
+                    level.playSound(player, player, Exposure.SoundEvents.PHOTOGRAPH_RUSTLE.get(), SoundSource.PLAYERS, 0.6f,
                             level.getRandom().nextFloat() * 0.2f + 0.9f);
                     return;
                 }
 
                 if (item.getItem() instanceof StackedPhotographsItem stackedPhotographs && stackedPhotographs.canAddPhotograph(item)) {
                     stackedPhotographs.addPhotographOnTop(item, photograph);
-                    level.playSound(null, player, SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.3f,
-                            level.getRandom().nextFloat() * 0.2f + 0.9f);
-                    level.playSound(null, player, Exposure.SoundEvents.PHOTOGRAPH_RUSTLE.get(), SoundSource.PLAYERS, 0.6f,
+                    item.setPopTime(Inventory.POP_TIME_DURATION);
+
+                    level.playSound(player, player, Exposure.SoundEvents.PHOTOGRAPH_RUSTLE.get(), SoundSource.PLAYERS, 0.6f,
                             level.getRandom().nextFloat() * 0.2f + 0.9f);
                     return;
                 }
             }
 
-            @Nullable ItemEntity itemEntity = player.drop(photograph, true, false);
-            if (itemEntity != null) {
-                itemEntity.setNoPickUpDelay();
+            if (!level.isClientSide) {
+                @Nullable ItemEntity itemEntity = player.drop(photograph, true, false);
+                if (itemEntity != null) {
+                    itemEntity.setNoPickUpDelay();
+                }
+
+                level.playSound(null, player, Exposure.SoundEvents.PHOTOGRAPH_RUSTLE.get(), SoundSource.PLAYERS, 0.6f,
+                        level.getRandom().nextFloat() * 0.2f + 1.2f);
             }
-
-            level.playSound(null, player, Exposure.SoundEvents.PHOTOGRAPH_RUSTLE.get(), SoundSource.PLAYERS, 0.6f,
-                    level.getRandom().nextFloat() * 0.2f + 1.2f);
-
-            StackedPhotographsItem.playAddSoundClientside(player);
         }
     }
 
@@ -326,6 +344,7 @@ public class InstantCameraItem extends CameraItem {
                     .setShutterSpeed(CameraSettings.SHUTTER_SPEED.getOrDefault(stack))
                     .setFilmType(film.getItem().getType())
                     .setFrameSize(film.getItem().getFrameSize(film.getItemStack()))
+                    .setFovOverride(getFov(level, stack))
                     .setCropFactor(getCropFactor())
                     .setColorPalette(getColorPalette(level.registryAccess(), stack))
                     .setFlash(flashHasFired)
@@ -338,7 +357,7 @@ public class InstantCameraItem extends CameraItem {
                 instance.setDeferredCooldown(cooldown);
             });
 
-            addNewFrame(serverLevel, captureProperties, holder, stack);
+            addNewFrame(serverLevel, holder, stack, captureProperties);
 
             ExposureServer.exposureRepository().expect(serverPlayer, exposureId);
             Packets.sendToClient(new CaptureStartS2CP(getCaptureType(stack), captureProperties), serverPlayer);

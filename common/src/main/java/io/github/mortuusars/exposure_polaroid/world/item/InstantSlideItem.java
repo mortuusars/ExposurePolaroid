@@ -27,13 +27,13 @@ public class InstantSlideItem extends Item implements FilmItem {
     }
 
     @Override
-    public int getDefaultFrameSize(ItemStack stack) {
-        //TODO: config
-        return 256; /*Config.Server.DEFAULT_FRAME_SIZE.get()*/
+    public int getMaxFrameCount(ItemStack stack) {
+        return 1;
     }
 
     @Override
-    public int getMaxFrameCount(ItemStack stack) {
-        return 1;
+    public int getDefaultFrameSize(ItemStack stack) {
+        //TODO: config
+        return 240; /*Config.Server.DEFAULT_FRAME_SIZE.get()*/
     }
 }

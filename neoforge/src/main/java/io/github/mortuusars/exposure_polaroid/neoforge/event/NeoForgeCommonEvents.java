@@ -1,11 +1,10 @@
 package io.github.mortuusars.exposure_polaroid.neoforge.event;
 
-import io.github.mortuusars.exposure.Exposure;
+import io.github.mortuusars.exposure.network.neoforge.PacketsImpl;
+import io.github.mortuusars.exposure.network.packet.Packet;
 import io.github.mortuusars.exposure_polaroid.ExposurePolaroid;
-import io.github.mortuusars.exposure_polaroid.network.neoforge.PacketsImpl;
 import io.github.mortuusars.exposure_polaroid.network.packet.C2SPackets;
 import io.github.mortuusars.exposure_polaroid.network.packet.CommonPackets;
-import io.github.mortuusars.exposure_polaroid.network.packet.Packet;
 import io.github.mortuusars.exposure_polaroid.network.packet.S2CPackets;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -18,7 +17,6 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
-import net.neoforged.neoforge.server.permission.events.PermissionGatherEvent;
 
 public class NeoForgeCommonEvents {
     @EventBusSubscriber(modid = ExposurePolaroid.ID, bus = EventBusSubscriber.Bus.MOD)

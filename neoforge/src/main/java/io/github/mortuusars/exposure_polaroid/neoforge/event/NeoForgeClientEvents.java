@@ -2,7 +2,6 @@ package io.github.mortuusars.exposure_polaroid.neoforge.event;
 
 import io.github.mortuusars.exposure_polaroid.ExposurePolaroid;
 import io.github.mortuusars.exposure_polaroid.ExposurePolaroidClient;
-import io.github.mortuusars.exposure_polaroid.neoforge.ExposurePolaroidNeoForgeClient;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -14,7 +13,7 @@ public class NeoForgeClientEvents {
     public static class ModBus {
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {
-            event.enqueueWork(ExposurePolaroidNeoForgeClient::init);
+            event.enqueueWork(ExposurePolaroidClient::init);
         }
 
         @SubscribeEvent

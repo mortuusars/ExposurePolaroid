@@ -1,8 +1,8 @@
 package io.github.mortuusars.exposure_polaroid.network.fabric;
 
+import io.github.mortuusars.exposure.network.packet.Packet;
 import io.github.mortuusars.exposure_polaroid.network.packet.C2SPackets;
 import io.github.mortuusars.exposure_polaroid.network.packet.CommonPackets;
-import io.github.mortuusars.exposure_polaroid.network.packet.Packet;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -32,9 +32,5 @@ public class FabricC2SPackets {
 
     private static <T extends Packet> void handleServerboundPacket(T payload, ServerPlayNetworking.Context context) {
         payload.handle(PacketFlow.SERVERBOUND, context.player());
-    }
-
-    public static void sendToServer(Packet packet) {
-        ClientPlayNetworking.send(packet);
     }
 }
