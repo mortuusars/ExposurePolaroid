@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "tag": "minecraft:buttons"
+    },
+    "G": {
+      "tag": "c:glass_panes/colorless"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "F": {
+      "tag": "exposure:flashes"
+    },
+    "C": {
+      "item": "minecraft:crafter"
+    }
+  },
+  "pattern": [
+    "III",
+    "BGF",
+    "ICI"
+  ],
+  "result": {
+    "id": "exposure_polaroid:instant_camera"
+  }
+}
