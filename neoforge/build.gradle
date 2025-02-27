@@ -52,7 +52,7 @@ dependencies {
     modImplementation("io.github.mortuusars.exposure:exposure-neoforge:${minecraft_version}-${exposure_version}")
 
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}") { transitive = false }
-//    modRuntimeOnly("io.github.mortuusars.exposure_catalog:exposure_catalog-neoforge:${minecraft_version}-${exposure_catalog_version}")
+    modRuntimeOnly("io.github.mortuusars.exposure_catalog:exposure_catalog-neoforge:${minecraft_version}-${exposure_catalog_version}")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowBundle(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive = false }
