@@ -33,7 +33,6 @@ import io.github.mortuusars.exposure_polaroid.Config;
 import io.github.mortuusars.exposure_polaroid.ExposurePolaroid;
 import io.github.mortuusars.exposure_polaroid.world.camera.PolaroidFrameExtraData;
 import io.github.mortuusars.exposure_polaroid.world.item.camera.InstantCameraAttachment;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -122,10 +121,10 @@ public class InstantCameraItem extends CameraItem {
         // Even though you can't install lens in survival, it can be added as a component to create camera with custom focal range.
         if (!Attachment.LENS.isEmpty(stack)) {
             return Attachment.LENS.map(stack, lensStack -> Lenses.getFocalRange(registryAccess, lensStack)
-                            .orElse(FocalRange.parse(Config.Server.INSTANT_CAMERA_DEFAULT_FOCAL_RANGE.get())))
-                    .orElse(FocalRange.parse(Config.Server.INSTANT_CAMERA_DEFAULT_FOCAL_RANGE.get()));
+                            .orElse(FocalRange.parse(Config.Server.INSTANT_CAMERA_FOCAL_RANGE.get())))
+                    .orElse(FocalRange.parse(Config.Server.INSTANT_CAMERA_FOCAL_RANGE.get()));
         }
-        return FocalRange.parse(Config.Server.INSTANT_CAMERA_DEFAULT_FOCAL_RANGE.get());
+        return FocalRange.parse(Config.Server.INSTANT_CAMERA_FOCAL_RANGE.get());
     }
 
     @Override
@@ -139,7 +138,7 @@ public class InstantCameraItem extends CameraItem {
     }
 
     public int getMaxSlideCount() {
-        return Config.Server.SLIDE_CAPACITY.get();
+        return Config.Server.INSTANT_CAMERA_SLIDE_CAPACITY.get();
     }
 
     public int getRemainingSlides(ItemStack stack) {

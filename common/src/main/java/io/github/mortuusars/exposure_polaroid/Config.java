@@ -12,24 +12,24 @@ public class Config {
     public static class Server {
         public static final ModConfigSpec SPEC;
 
-        public static final ModConfigSpec.ConfigValue<String> INSTANT_CAMERA_DEFAULT_FOCAL_RANGE;
-        public static final ModConfigSpec.IntValue DEFAULT_FRAME_SIZE;
-        public static final ModConfigSpec.IntValue SLIDE_CAPACITY;
+        public static final ModConfigSpec.ConfigValue<String> INSTANT_CAMERA_FOCAL_RANGE;
+        public static final ModConfigSpec.IntValue INSTANT_CAMERA_FRAME_SIZE;
+        public static final ModConfigSpec.IntValue INSTANT_CAMERA_SLIDE_CAPACITY;
 
         static {
             ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
 
             {
                 builder.push("instant_camera");
-                INSTANT_CAMERA_DEFAULT_FOCAL_RANGE = builder
+                INSTANT_CAMERA_FOCAL_RANGE = builder
                         .comment("Min/max focal ranges of an Instant Camera.",
                                 "Allowed range: " + FocalRange.ALLOWED_MIN + "-" + FocalRange.ALLOWED_MAX,
                                 "Default: 20-40")
-                        .define("default_focal_range", "20-40");
-                DEFAULT_FRAME_SIZE = builder
+                        .define("focal_range", "20-40");
+                INSTANT_CAMERA_FRAME_SIZE = builder
                         .comment("Default size of an exposure image taken with Instant Camera. High values take more disk space and can cause lag. Default: 240")
-                        .defineInRange("default_frame_size", 240, 1, 2048);
-                SLIDE_CAPACITY = builder
+                        .defineInRange("frame_size", 240, 1, 2048);
+                INSTANT_CAMERA_SLIDE_CAPACITY = builder
                         .comment("How many Slides can Instant Camera hold at once. Default: 12")
                         .defineInRange("slide_capacity", 12, 1, 64);
                 builder.pop();

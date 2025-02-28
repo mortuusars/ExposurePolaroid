@@ -39,7 +39,7 @@ public class InstantSlideItem extends Item implements FilmItem {
 
     @Override
     public int getDefaultFrameSize(ItemStack stack) {
-        return Config.Server.DEFAULT_FRAME_SIZE.get();
+        return Config.Server.INSTANT_CAMERA_FRAME_SIZE.get();
     }
 
     @Override
