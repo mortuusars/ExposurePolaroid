@@ -1,9 +1,9 @@
 package io.github.mortuusars.exposure_polaroid.client.gui.screen.camera.button;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import io.github.mortuusars.exposure.Config;
 import io.github.mortuusars.exposure.world.camera.Camera;
 import io.github.mortuusars.exposure.world.item.camera.CameraSettings;
+import io.github.mortuusars.exposure_polaroid.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;

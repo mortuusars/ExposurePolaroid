@@ -4,6 +4,7 @@ import io.github.mortuusars.exposure.data.ColorPalette;
 import io.github.mortuusars.exposure.data.ColorPalettes;
 import io.github.mortuusars.exposure.world.camera.ExposureType;
 import io.github.mortuusars.exposure.world.item.FilmItem;
+import io.github.mortuusars.exposure_polaroid.Config;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -38,8 +39,7 @@ public class InstantSlideItem extends Item implements FilmItem {
 
     @Override
     public int getDefaultFrameSize(ItemStack stack) {
-        //TODO: config
-        return 240; /*Config.Server.DEFAULT_FRAME_SIZE.get()*/
+        return Config.Server.DEFAULT_FRAME_SIZE.get();
     }
 
     @Override

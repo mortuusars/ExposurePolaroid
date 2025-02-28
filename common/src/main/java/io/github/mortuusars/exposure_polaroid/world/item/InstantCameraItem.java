@@ -2,6 +2,7 @@ package io.github.mortuusars.exposure_polaroid.world.item;
 
 import io.github.mortuusars.exposure.Exposure;
 import io.github.mortuusars.exposure.ExposureServer;
+import io.github.mortuusars.exposure.client.util.Minecrft;
 import io.github.mortuusars.exposure.data.ColorPalette;
 import io.github.mortuusars.exposure.data.ColorPalettes;
 import io.github.mortuusars.exposure.data.Lenses;
@@ -118,11 +119,13 @@ public class InstantCameraItem extends CameraItem {
 
     @Override
     public FocalRange getFocalRange(RegistryAccess registryAccess, ItemStack stack) {
+        // Even though you can't install lens in survival, it can be added as a component to create camera with custom focal range.
         if (!Attachment.LENS.isEmpty(stack)) {
-            return Attachment.LENS.map(stack, lensStack -> Lenses.getFocalRangeOrDefault(registryAccess, lensStack))
-                    .orElse(new FocalRange(20, 40));
+            return Attachment.LENS.map(stack, lensStack -> Lenses.getFocalRange(registryAccess, lensStack)
+                            .orElse(FocalRange.parse(Config.Server.INSTANT_CAMERA_DEFAULT_FOCAL_RANGE.get())))
+                    .orElse(FocalRange.parse(Config.Server.INSTANT_CAMERA_DEFAULT_FOCAL_RANGE.get()));
         }
-        return new FocalRange(20, 40);
+        return FocalRange.parse(Config.Server.INSTANT_CAMERA_DEFAULT_FOCAL_RANGE.get());
     }
 
     @Override
@@ -136,7 +139,7 @@ public class InstantCameraItem extends CameraItem {
     }
 
     public int getMaxSlideCount() {
-        return 12;
+        return Config.Server.SLIDE_CAPACITY.get();
     }
 
     public int getRemainingSlides(ItemStack stack) {
@@ -168,7 +171,7 @@ public class InstantCameraItem extends CameraItem {
     public int getBarColor(@NotNull ItemStack stack) {
         ItemStack slide = InstantCameraAttachment.INSTANT_SLIDE.get(stack).getForReading();
         int max = getMaxSlideCount();
-        float f = Math.max(0.0F, ((float)slide.getCount()) / (float)max);
+        float f = Math.max(0.0F, ((float) slide.getCount()) / (float) max);
         return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
     }
 
@@ -195,41 +198,39 @@ public class InstantCameraItem extends CameraItem {
 
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack otherStack, Slot slot, ClickAction action, Player player, SlotAccess access) {
-        if (action != ClickAction.SECONDARY) return false;
+        if (action != ClickAction.SECONDARY || !slot.allowModification(player)) return false;
 
-        if (getShutter().isOpen(stack)) {
-            player.playSound(Exposure.SoundEvents.CAMERA_LENS_RING_CLICK.get(), 0.9f, 1f);
-            player.displayClientMessage(Component.translatable("item.exposure.camera.camera_attachments.fail.shutter_open")
-                    .withStyle(ChatFormatting.RED), true);
-            return true;
-        }
-
-        StoredItemStack slideStack = InstantCameraAttachment.INSTANT_SLIDE.get(stack);
+        StoredItemStack slide = InstantCameraAttachment.INSTANT_SLIDE.get(stack);
 
         if (InstantCameraAttachment.INSTANT_SLIDE.matches(otherStack)) {
-            ItemStack stored = slideStack.getForReading();
-            int availableSlots = Math.max(0, getMaxSlideCount() - stored.getCount());
+            ItemStack storedStack = slide.getForReading();
+            int availableSlots = Math.max(0, getMaxSlideCount() - storedStack.getCount());
 
-            if (availableSlots == 0 || (!stored.isEmpty() && !ItemStack.isSameItemSameComponents(stored, otherStack))) {
+            if (availableSlots == 0 || (!storedStack.isEmpty() && !ItemStack.isSameItemSameComponents(storedStack, otherStack))) {
                 player.playSound(Exposure.SoundEvents.CAMERA_LENS_RING_CLICK.get(), 0.9f, 1f);
                 return true;
             }
 
             ItemStack insertedStack = otherStack.split(availableSlots);
-            insertedStack.setCount(insertedStack.getCount() + stored.getCount());
+            insertedStack.setCount(insertedStack.getCount() + storedStack.getCount());
             InstantCameraAttachment.INSTANT_SLIDE.set(stack, insertedStack);
-
-            access.set(otherStack);
             InstantCameraAttachment.INSTANT_SLIDE.playInsertSoundSided(player);
+
+            // For some unknown reason, inserting slides when camera already has some does not sync it to the server.
+            // But only if the player is in "inventory" tab of creative inventory.
+            // This fixes it:
+            if (player.isCreative()) {
+                Minecrft.gameMode().handleCreativeModeItemAdd(stack, slot.index);
+            }
 
             return true;
         }
 
-        if (otherStack.isEmpty() && !slideStack.isEmpty()) {
-            access.set(slideStack.getCopy());
+        if (otherStack.isEmpty() && !slide.isEmpty() && !player.getCooldowns().isOnCooldown(this)) {
+            access.set(slide.getCopy());
             InstantCameraAttachment.INSTANT_SLIDE.set(stack, ItemStack.EMPTY);
-            player.level().playSound(player, player, ExposurePolaroid.SoundEvents.INSTANT_CAMERA_VIEWFINDER_OPEN.get(),
-                    SoundSource.PLAYERS, 0.9f, 1f);
+            player.level().playSound(player, player, Exposure.SoundEvents.CAMERA_GENERIC_CLICK.get(),
+                    SoundSource.PLAYERS, 0.5f, 0.7f);
             return true;
         }
 
@@ -255,10 +256,12 @@ public class InstantCameraItem extends CameraItem {
     }
 
     private static void printPhotograph(ItemStack stack, Level level, Player player, Frame frame) {
-        ItemStack slide = InstantCameraAttachment.INSTANT_SLIDE.get(stack).getCopy();
-        slide.shrink(1);
-        slide = slide.isEmpty() ? ItemStack.EMPTY : slide;
-        InstantCameraAttachment.INSTANT_SLIDE.set(stack, slide);
+        if (!player.isCreative()) {
+            ItemStack slide = InstantCameraAttachment.INSTANT_SLIDE.get(stack).getCopy();
+            slide.shrink(1);
+            slide = slide.isEmpty() ? ItemStack.EMPTY : slide;
+            InstantCameraAttachment.INSTANT_SLIDE.set(stack, slide);
+        }
 
         ItemStack photograph = new ItemStack(Exposure.Items.PHOTOGRAPH.get());
         photograph.set(Exposure.DataComponents.PHOTOGRAPH_FRAME, frame);
@@ -303,6 +306,10 @@ public class InstantCameraItem extends CameraItem {
 
             level.playSound(null, player, Exposure.SoundEvents.PHOTOGRAPH_RUSTLE.get(), SoundSource.PLAYERS, 0.6f,
                     level.getRandom().nextFloat() * 0.2f + 1.2f);
+        }
+
+        if (player instanceof ServerPlayer serverPlayer) {
+            Exposure.CriteriaTriggers.FRAME_PRINTED.get().trigger(serverPlayer, player.blockPosition(), frame, photograph);
         }
     }
 
