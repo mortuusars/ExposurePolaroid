@@ -27,10 +27,6 @@ public class ExposurePolaroidFabric implements ModInitializer {
             content.accept(ExposurePolaroid.Items.INSTANT_BLACK_AND_WHITE_SLIDE.get());
         });
 
-        ModelLoadingPlugin.register(pluginContext ->
-                pluginContext.addModels(
-                        ExposurePolaroidClient.Models.INSTANT_CAMERA_GUI.id()));
-
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
         });
 

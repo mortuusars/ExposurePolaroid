@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.3 - 2025-03-02
+- [Fabric] Fixed startup crash on dedicated server.   
+
 ## 1.0.2 - 2025-03-02
 - Fixed Instant Slide crafting recipes giving 1 slide instead of 3. 
 
