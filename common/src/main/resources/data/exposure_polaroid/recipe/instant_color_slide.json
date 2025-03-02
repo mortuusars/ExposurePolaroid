@@ -27,6 +27,7 @@
     "PPP"
   ],
   "result": {
-    "id": "exposure_polaroid:instant_color_slide"
+    "id": "exposure_polaroid:instant_color_slide",
+    "count": 3
   }
 }
