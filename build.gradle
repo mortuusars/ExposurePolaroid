@@ -20,7 +20,7 @@ subprojects {
     apply plugin: 'maven-publish'
 
     base {
-        archivesName = "$rootProject.archives_name-$project.name"
+        archivesName = "$rootProject.archives_name-$project.name-$rootProject.minecraft_version"
     }
 
     repositories {
@@ -121,8 +121,8 @@ subprojects {
     publishing {
         publications {
             maven(MavenPublication) {
-                artifactId = base.archivesName.get()
-                version = "${minecraft_version}-${mod_version}"
+                artifactId = "${mod_id}-${minecraft_version}-${project.name}"
+                version = "${mod_version}"
                 from components.java
             }
         }
