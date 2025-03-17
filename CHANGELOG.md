@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.4 - 2025-03-17
+[Requires Exposure 1.8.11+]
+- Made compatible with the newest Exposure version (thanks BluSpring).
+
 ## 1.0.3 - 2025-03-02
 - [Fabric] Fixed startup crash on dedicated server.   
 
