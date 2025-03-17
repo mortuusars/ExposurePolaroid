@@ -331,7 +331,7 @@ public class InstantCameraItem extends CameraItem {
 
     @Override
     public @NotNull InteractionResultHolder<ItemStack> release(CameraHolder holder, ItemStack stack) {
-        Entity entity = holder.asEntity();
+        Entity entity = holder.asHolderEntity();
         Level level = entity.level();
 
         Sound.playSided(entity, getReleaseButtonSound(), entity.getSoundSource(), 0.3f, 1f, 0.1f);
