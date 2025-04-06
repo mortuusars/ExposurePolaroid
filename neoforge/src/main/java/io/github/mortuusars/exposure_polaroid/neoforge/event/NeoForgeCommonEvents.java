@@ -1,14 +1,18 @@
 package io.github.mortuusars.exposure_polaroid.neoforge.event;
 
+import io.github.mortuusars.exposure.Exposure;
 import io.github.mortuusars.exposure.network.neoforge.PacketsImpl;
 import io.github.mortuusars.exposure.network.packet.Packet;
 import io.github.mortuusars.exposure_polaroid.ExposurePolaroid;
 import io.github.mortuusars.exposure_polaroid.network.packet.C2SPackets;
 import io.github.mortuusars.exposure_polaroid.network.packet.CommonPackets;
 import io.github.mortuusars.exposure_polaroid.network.packet.S2CPackets;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -28,10 +32,12 @@ public class NeoForgeCommonEvents {
 
         @SubscribeEvent
         public static void onCreativeTabsBuild(BuildCreativeModeTabContentsEvent event) {
-            if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            if (event.getTabKey() == ResourceKey.create(Registries.CREATIVE_MODE_TAB, Exposure.resource("exposure"))) {
                 event.accept(ExposurePolaroid.Items.INSTANT_CAMERA.get());
-                event.accept(ExposurePolaroid.Items.INSTANT_COLOR_SLIDE.get());
                 event.accept(ExposurePolaroid.Items.INSTANT_BLACK_AND_WHITE_SLIDE.get());
+                event.accept(ExposurePolaroid.Items.INSTANT_COLOR_SLIDE.get());
+                event.accept(ExposurePolaroid.Items.HIGH_SENSITIVITY_INSTANT_BLACK_AND_WHITE_SLIDE.get());
+                event.accept(ExposurePolaroid.Items.HIGH_SENSITIVITY_INSTANT_COLOR_SLIDE.get());
             }
         }
 

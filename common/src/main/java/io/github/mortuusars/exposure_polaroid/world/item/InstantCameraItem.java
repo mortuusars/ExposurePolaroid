@@ -191,6 +191,7 @@ public class InstantCameraItem extends CameraItem {
             if (stack.getEntityRepresentation() instanceof CameraStandEntity) {
                 if (Screen.hasShiftDown()) {
                     components.add(Component.translatable("item.exposure_polaroid.instant_camera.tooltip.details_insert_on_stand"));
+                    components.add(Component.translatable("item.exposure_polaroid.instant_camera.tooltip.details_remove_on_stand"));
                 } else
                     components.add(Component.translatable("tooltip.exposure.hold_for_details"));
                 return;
@@ -198,6 +199,7 @@ public class InstantCameraItem extends CameraItem {
 
             if (Screen.hasShiftDown()) {
                 components.add(Component.translatable("item.exposure_polaroid.instant_camera.tooltip.details_insert"));
+                components.add(Component.translatable("item.exposure_polaroid.instant_camera.tooltip.details_remove"));
             } else {
                 components.add(Component.translatable("tooltip.exposure.hold_for_details"));
             }

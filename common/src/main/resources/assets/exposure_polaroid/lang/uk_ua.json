@@ -19,12 +19,16 @@
   "gui.exposure_polaroid.camera_controls.zoom.far": "Дал.",
   "gui.exposure_polaroid.camera_controls.zoom.near": "Близ.",
   "gui.exposure_polaroid.camera_controls.zoom.tooltip": "Зум",
+  "item.exposure_polaroid.high_sensitivity_instant_black_and_white_slide": "Високочутливий миттєвий чорно-білий слайд",
+  "item.exposure_polaroid.high_sensitivity_instant_color_slide": "Високочутливий миттєвий кольоровий слайд",
   "item.exposure_polaroid.instant_black_and_white_slide": "Миттєвий чорно-білий слайд",
   "item.exposure_polaroid.instant_camera": "Камера миттєвого друку",
   "item.exposure_polaroid.instant_camera.tooltip.details_insert": "§8Натисніть [§7Праву кнопку миші§8] з предметом, щоб вставити слайди",
+  "item.exposure_polaroid.instant_camera.tooltip.details_insert_on_stand": "§8[§7Використайте крадучись§8] з предметом, щоб вставити слайди",
+  "item.exposure_polaroid.instant_camera.tooltip.details_remove": "§8Натисніть [§7Праву кнопку миші§8], щоб забрати слайди",
+  "item.exposure_polaroid.instant_camera.tooltip.details_remove_on_stand": "§8[§7Використайте крадучись§8], щоб забрати слайди",
   "item.exposure_polaroid.instant_camera.tooltip.slides": "§7Слайди: §f%s/%s",
   "item.exposure_polaroid.instant_color_slide": "Миттєвий кольоровий слайд",
   "subtitle.exposure_polaroid.instant_camera.slide_insert": "Миттєвий слайд вставлений",
-  "item.exposure_polaroid.instant_camera.tooltip.details_insert_on_stand": "§8[§7Sneak + Use§8] with item to insert slides",
   "subtitle.exposure_polaroid.instant_camera.slide_remove": "Миттєвий слайд видалений"
 }

@@ -1,6 +1,8 @@
 # Changelog
 
 ## UNRELEASED
+[Requires Exposure 1.9.0+]
+- Added High-Sensitivity Slides.
 - Photos from Instant Slides look slightly different now (changed contrast and colors).
 - Instant Camera textures now show type of slide is installed.
 - Added slide removing sound.

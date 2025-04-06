@@ -77,6 +77,27 @@ public class ExposurePolaroid {
                                         .withHSB(new HSB(0f, 0.05f, 0.05f))
                                         .withColorBalance(new ColorBalance(0.03f, 0.01f, -0.01f)))));
 
+        public static final Supplier<InstantSlideItem> HIGH_SENSITIVITY_INSTANT_COLOR_SLIDE = Register.item("high_sensitivity_instant_color_slide",
+                () -> new InstantSlideItem(ExposureType.COLOR, new Item.Properties()
+                        .component(Exposure.DataComponents.FILM_STYLE,
+                                FilmStyle.create()
+                                        .withSensitivity(2f)
+                                        .withContrast(0.2f)
+                                        .withLevels(new Levels(0, 135, 255, 25, 255))
+                                        .withHSB(new HSB(0f, 0.05f, 0.05f))
+                                        .withColorBalance(new ColorBalance(0.03f, 0.01f, -0.01f))
+                                        .withNoise(0.05f))));
+        public static final Supplier<InstantSlideItem> HIGH_SENSITIVITY_INSTANT_BLACK_AND_WHITE_SLIDE = Register.item("high_sensitivity_instant_black_and_white_slide",
+                () -> new InstantSlideItem(ExposureType.BLACK_AND_WHITE, new Item.Properties()
+                        .component(Exposure.DataComponents.FILM_STYLE,
+                                FilmStyle.create()
+                                        .withSensitivity(2f)
+                                        .withContrast(0.2f)
+                                        .withLevels(new Levels(0, 135, 255, 25, 255))
+                                        .withHSB(new HSB(0f, 0.05f, 0.05f))
+                                        .withColorBalance(new ColorBalance(0.03f, 0.01f, -0.01f))
+                                        .withNoise(0.05f))));
+
         static void init() {
         }
     }
