@@ -30,5 +30,11 @@
       "exposure_polaroid:item/instant_camera_slide_insert"
     ],
     "subtitle": "subtitle.exposure_polaroid.instant_camera.slide_insert"
+  },
+  "item.instant_camera.slide_remove": {
+    "sounds": [
+      "exposure_polaroid:item/instant_camera_slide_remove"
+    ],
+    "subtitle": "subtitle.exposure_polaroid.instant_camera.slide_remove"
   }
 }

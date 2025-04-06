@@ -25,5 +25,6 @@
   "item.exposure_polaroid.instant_camera.tooltip.details_insert_on_stand": "§8[§7Sneak + Use§8] with item to insert slides",
   "item.exposure_polaroid.instant_camera.tooltip.slides": "§7Slides: §f%s/%s",
   "item.exposure_polaroid.instant_color_slide": "Instant Color Slide",
-  "subtitle.exposure_polaroid.instant_camera.slide_insert": "Slide Inserted"
+  "subtitle.exposure_polaroid.instant_camera.slide_insert": "Instant Slide inserted",
+  "subtitle.exposure_polaroid.instant_camera.slide_remove": "Instant Slide removed"
 }

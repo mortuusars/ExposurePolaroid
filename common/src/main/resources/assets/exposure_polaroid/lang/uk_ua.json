@@ -24,5 +24,7 @@
   "item.exposure_polaroid.instant_camera.tooltip.details_insert": "§8Натисніть [§7Праву кнопку миші§8] з предметом, щоб вставити слайди",
   "item.exposure_polaroid.instant_camera.tooltip.slides": "§7Слайди: §f%s/%s",
   "item.exposure_polaroid.instant_color_slide": "Миттєвий кольоровий слайд",
-  "subtitle.exposure_polaroid.instant_camera.slide_insert": "Слайд вставлений"
+  "subtitle.exposure_polaroid.instant_camera.slide_insert": "Миттєвий слайд вставлений",
+  "item.exposure_polaroid.instant_camera.tooltip.details_insert_on_stand": "§8[§7Sneak + Use§8] with item to insert slides",
+  "subtitle.exposure_polaroid.instant_camera.slide_remove": "Миттєвий слайд видалений"
 }
