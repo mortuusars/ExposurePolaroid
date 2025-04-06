@@ -2,15 +2,17 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"particle": "exposure_polaroid:item/instant_camera",
-		"texture": "exposure_polaroid:item/instant_camera"
+		"texture": "exposure_polaroid:item/instant_camera",
+		"photograph": "exposure:item/camera/empty",
+		"selfie_stick": "exposure:item/camera/empty",
+		"particle": "exposure_polaroid:item/instant_camera"
 	},
-	"gui_light": "front",
 	"elements": [
 		{
-			"from": [4, 3, 3],
-			"to": [12, 6, 13],
-			"rotation": {"angle": 0, "axis": "y", "origin": [4, 3, 4]},
+			"name": "bottom",
+			"from": [4, 0, 3],
+			"to": [12, 3, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [4, 0, 4]},
 			"faces": {
 				"north": {"uv": [2, 11.5, 6, 12.99], "texture": "#texture"},
 				"east": {"uv": [2, 11.5, 0.5, 6.5], "rotation": 90, "texture": "#texture"},
@@ -21,9 +23,10 @@
 			}
 		},
 		{
-			"from": [4, 6, 6],
-			"to": [12, 12, 10],
-			"rotation": {"angle": 0, "axis": "x", "origin": [4, 7, 4]},
+			"name": "top",
+			"from": [4, 3, 6],
+			"to": [12, 9, 10],
+			"rotation": {"angle": 0, "axis": "x", "origin": [4, 4, 4]},
 			"faces": {
 				"north": {"uv": [2, 2, 6, 5], "texture": "#texture"},
 				"east": {"uv": [0, 2.01, 2, 4.99], "texture": "#texture"},
@@ -33,9 +36,10 @@
 			}
 		},
 		{
-			"from": [6, 7, 4],
-			"to": [10, 11, 6],
-			"rotation": {"angle": 0, "axis": "z", "origin": [8, 9, 5]},
+			"name": "lens",
+			"from": [6, 4, 4],
+			"to": [10, 8, 6],
+			"rotation": {"angle": 0, "axis": "z", "origin": [8, 6, 5]},
 			"faces": {
 				"north": {"uv": [13, 13, 15, 15], "texture": "#texture"},
 				"east": {"uv": [12, 13, 13, 15], "texture": "#texture"},
@@ -45,105 +49,235 @@
 			}
 		},
 		{
-			"from": [4.02, 5.16, 8.6],
-			"to": [11.98, 8.16, 13.85],
-			"rotation": {"angle": 45, "axis": "x", "origin": [8, 8.1, 10.8]},
+			"name": "slope",
+			"from": [4.02, 2.16, 8.6],
+			"to": [11.98, 5.16, 13.85],
+			"rotation": {"angle": 45, "axis": "x", "origin": [8, 5.1, 10.8]},
 			"faces": {
 				"east": {"uv": [5.5, 12.975, 7, 16], "rotation": 90, "texture": "#texture"},
 				"west": {"uv": [4, 12.975, 5.5, 16], "rotation": 90, "texture": "#texture"},
 				"up": {"uv": [0, 12.975, 3.98, 16], "texture": "#texture"}
 			}
+		},
+		{
+			"name": "photograph",
+			"from": [5, 1, -2],
+			"to": [11, 1, 3],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -3, 0]},
+			"faces": {
+				"up": {"uv": [0, 0, 3, 2.5], "rotation": 180, "texture": "#photograph"},
+				"down": {"uv": [0, 2.5, 3, 5], "texture": "#photograph"}
+			}
+		},
+		{
+			"name": "stick",
+			"from": [7, -2, -9],
+			"to": [9, 0, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -5, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 1, 1], "texture": "#selfie_stick"},
+				"east": {"uv": [0, 1, 1, 10], "rotation": 90, "texture": "#selfie_stick"},
+				"south": {"uv": [0, 10, 1, 11], "texture": "#selfie_stick"},
+				"west": {"uv": [0, 1, 1, 10], "rotation": 270, "texture": "#selfie_stick"},
+				"up": {"uv": [0, 1, 1, 10], "texture": "#selfie_stick"},
+				"down": {"uv": [0, 1, 1, 10], "rotation": 180, "texture": "#selfie_stick"}
+			}
+		},
+		{
+			"name": "glass",
+			"from": [6.9, 4.9, 4.02],
+			"to": [9.1, 7.1, 4.02],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 5, 4]},
+			"faces": {
+				"north": {"uv": [15, 15, 16, 16], "texture": "#texture", "tintindex": 1}
+			}
 		}
 	],
-	"display": {
-		"thirdperson_righthand": {
-			"rotation": [55, 9, 0],
-			"translation": [-0.75, 0.75, -0.25],
-			"scale": [0.8, 0.8, 0.8]
-		},
-		"thirdperson_lefthand": {
-			"rotation": [55, 9, 0],
-			"translation": [-0.75, 0.75, -0.25],
-			"scale": [0.8, 0.8, 0.8]
-		},
-		"firstperson_righthand": {
-			"rotation": [0, 5, 0],
-			"translation": [4.5, 0.75, 0]
-		},
-		"firstperson_lefthand": {
-			"rotation": [0, 5, 0],
-			"translation": [4.5, 0.75, 0]
-		},
-		"ground": {
-			"translation": [0, 1.5, 0],
-			"scale": [0.8, 0.8, 0.8]
-		},
-		"head": {
-			"translation": [0, 11.75, 0],
-			"scale": [1.1, 1.1, 1.1]
-		},
-		"fixed": {
-			"translation": [0, 0, -1],
-			"scale": [1.3, 1.3, 1.3]
-		}
-	},
+	"gui_light": "front",
 	"overrides": [
-		{
-			"predicate": {
-				"exposure_polaroid:printing": 0.1
-			},
-			"model": "exposure_polaroid:item/instant_camera_print1"
-		},
-		{
-			"predicate": {
-				"exposure_polaroid:printing": 0.4
-			},
-			"model": "exposure_polaroid:item/instant_camera_print2"
-		},
-		{
-			"predicate": {
-				"exposure_polaroid:printing": 0.7
-			},
-			"model": "exposure_polaroid:item/instant_camera_print3"
-		},
 		{
 			"predicate": {
 				"exposure:camera_state": 0.1
 			},
 			"model": "exposure_polaroid:item/instant_camera_active"
 		},
+
 		{
 			"predicate": {
-				"exposure:camera_state": 0.1,
+				"exposure_polaroid:slide_type": 0.5
+			},
+			"model": "exposure_polaroid:item/instant_camera_bw"
+		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 0.5,
 				"exposure_polaroid:printing": 0.1
 			},
-			"model": "exposure_polaroid:item/instant_camera_active_print1"
+			"model": "exposure_polaroid:item/instant_camera_bw_print1"
 		},
 		{
 			"predicate": {
-				"exposure:camera_state": 0.1,
+				"exposure_polaroid:slide_type": 0.5,
 				"exposure_polaroid:printing": 0.4
 			},
-			"model": "exposure_polaroid:item/instant_camera_active_print2"
+			"model": "exposure_polaroid:item/instant_camera_bw_print2"
 		},
 		{
 			"predicate": {
-				"exposure:camera_state": 0.1,
+				"exposure_polaroid:slide_type": 0.5,
 				"exposure_polaroid:printing": 0.7
 			},
-			"model": "exposure_polaroid:item/instant_camera_active_print3"
+			"model": "exposure_polaroid:item/instant_camera_bw_print3"
 		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 1
+			},
+			"model": "exposure_polaroid:item/instant_camera_color"
+		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 0.5,
+				"exposure:camera_state": 0.1
+			},
+			"model": "exposure_polaroid:item/instant_camera_active_bw"
+		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 0.5,
+				"exposure_polaroid:printing": 0.1,
+				"exposure:camera_state": 0.1
+			},
+			"model": "exposure_polaroid:item/instant_camera_active_bw_print1"
+		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 0.5,
+				"exposure_polaroid:printing": 0.4,
+				"exposure:camera_state": 0.1
+			},
+			"model": "exposure_polaroid:item/instant_camera_active_bw_print2"
+		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 0.5,
+				"exposure_polaroid:printing": 0.7,
+				"exposure:camera_state": 0.1
+			},
+			"model": "exposure_polaroid:item/instant_camera_active_bw_print3"
+		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 1,
+				"exposure:camera_state": 0.1
+			},
+			"model": "exposure_polaroid:item/instant_camera_active_color"
+		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 1,
+				"exposure_polaroid:printing": 0.1
+			},
+			"model": "exposure_polaroid:item/instant_camera_color_print1"
+		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 1,
+				"exposure_polaroid:printing": 0.4
+			},
+			"model": "exposure_polaroid:item/instant_camera_color_print2"
+		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 1,
+				"exposure_polaroid:printing": 0.7
+			},
+			"model": "exposure_polaroid:item/instant_camera_color_print3"
+		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 1,
+				"exposure_polaroid:printing": 0.1,
+				"exposure:camera_state": 0.1
+			},
+			"model": "exposure_polaroid:item/instant_camera_active_color_print1"
+		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 1,
+				"exposure_polaroid:printing": 0.4,
+				"exposure:camera_state": 0.1
+			},
+			"model": "exposure_polaroid:item/instant_camera_active_color_print2"
+		},
+		{
+			"predicate": {
+				"exposure_polaroid:slide_type": 1,
+				"exposure_polaroid:printing": 0.7,
+				"exposure:camera_state": 0.1
+			},
+			"model": "exposure_polaroid:item/instant_camera_active_color_print3"
+		},
+
+
 		{
 			"predicate": {
 				"exposure:camera_state": 0.2
 			},
 			"model": "exposure_polaroid:item/selfie_stick"
 		},
+
 		{
 			"predicate": {
 				"exposure:camera_state": 0.3
 			},
 			"model": "exposure_polaroid:item/instant_camera_selfie"
+		},
+		{
+			"predicate": {
+				"exposure:camera_state": 0.3,
+				"exposure_polaroid:slide_type": 0.5
+			},
+			"model": "exposure_polaroid:item/instant_camera_selfie_bw"
+		},
+		{
+			"predicate": {
+				"exposure:camera_state": 0.3,
+				"exposure_polaroid:slide_type": 1
+			},
+			"model": "exposure_polaroid:item/instant_camera_selfie_color"
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [65, 9, 0],
+			"translation": [-0.75, 2, 2],
+			"scale": [0.8, 0.8, 0.8]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [65, 9, 0],
+			"translation": [-0.75, 2, 2],
+			"scale": [0.8, 0.8, 0.8]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 5, 0],
+			"translation": [4.5, 3.75, 0]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 5, 0],
+			"translation": [4.5, 3.75, 0]
+		},
+		"ground": {
+			"translation": [0, 5.25, 0],
+			"scale": [0.8, 0.8, 0.8]
+		},
+		"head": {
+			"translation": [0, 15.25, 0],
+			"scale": [1.1, 1.1, 1.1]
+		},
+		"fixed": {
+			"translation": [0, 4, -1],
+			"scale": [1.3, 1.3, 1.3]
+		}
+	}
 }

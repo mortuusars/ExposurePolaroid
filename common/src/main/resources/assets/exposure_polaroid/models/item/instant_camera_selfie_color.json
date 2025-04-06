@@ -1,0 +1,9 @@
+{
+	"parent": "exposure_polaroid:item/instant_camera_selfie",
+	"textures": {
+		"texture": "exposure_polaroid:item/instant_camera_color",
+		"photograph": "exposure:item/camera/empty",
+		"selfie_stick": "exposure_polaroid:item/instant_camera_selfie_stick",
+		"particle": "exposure_polaroid:item/instant_camera"
+	}
+}

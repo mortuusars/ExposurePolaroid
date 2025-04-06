@@ -3,5 +3,19 @@
   "textures": {
     "layer0": "exposure_polaroid:item/instant_camera_gui"
   },
-  "gui_light": "front"
+  "gui_light": "front",
+  "overrides": [
+    {
+      "predicate": {
+        "exposure_polaroid:slide_type": 0.5
+      },
+      "model": "exposure_polaroid:item/instant_camera_gui_bw"
+    },
+    {
+      "predicate": {
+        "exposure_polaroid:slide_type": 1
+      },
+      "model": "exposure_polaroid:item/instant_camera_gui_color"
+    }
+  ]
 }

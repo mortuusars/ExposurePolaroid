@@ -1,5 +1,9 @@
 # Changelog
 
+## UNRELEASED
+- Photos from Instant Slides look slightly different now (changed contrast and colors).
+- Instant Camera textures now show type of slide is installed. 
+
 ## 1.0.4 - 2025-03-17
 [Requires Exposure 1.8.11+]
 - Made compatible with the newest Exposure version (thanks BluSpring).

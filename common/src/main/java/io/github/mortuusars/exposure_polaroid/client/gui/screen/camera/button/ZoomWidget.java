@@ -35,7 +35,7 @@ public class ZoomWidget extends AbstractWidget {
         Font font = Minecraft.getInstance().font;
         MutableComponent text = Component.translatable("gui.exposure_polaroid.camera_controls.zoom." + (isFar ? "far" : "near"));
         int textWidth = font.width(text);
-        int xPos = 17 + (26 - textWidth) / 2;
+        int xPos = 17 + (29 - textWidth) / 2;
 
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();

@@ -4,10 +4,9 @@ import com.google.common.base.Preconditions;
 import com.mojang.logging.LogUtils;
 import io.github.mortuusars.exposure.Exposure;
 import io.github.mortuusars.exposure.world.camera.ExposureType;
-import io.github.mortuusars.exposure.world.item.camera.Shutter;
+import io.github.mortuusars.exposure.world.camera.film.properties.*;
 import io.github.mortuusars.exposure_polaroid.world.item.InstantCameraItem;
 import io.github.mortuusars.exposure_polaroid.world.item.InstantSlideItem;
-import io.github.mortuusars.exposure_polaroid.world.item.camera.InstantCameraShutter;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -57,14 +56,26 @@ public class ExposurePolaroid {
 
     public static class Items {
         public static final Supplier<InstantCameraItem> INSTANT_CAMERA = Register.item("instant_camera",
-                () -> new InstantCameraItem(new InstantCameraShutter(), new Item.Properties()
+                () -> new InstantCameraItem(new Item.Properties()
                         .stacksTo(1)
                         .component(Exposure.DataComponents.CAMERA_ACTIVE, false)));
 
         public static final Supplier<InstantSlideItem> INSTANT_COLOR_SLIDE = Register.item("instant_color_slide",
-                () -> new InstantSlideItem(ExposureType.COLOR, new Item.Properties()));
+                () -> new InstantSlideItem(ExposureType.COLOR, new Item.Properties()
+                        .component(Exposure.DataComponents.FILM_STYLE,
+                                FilmStyle.create()
+                                        .withContrast(0.2f)
+                                        .withLevels(new Levels(0, 135, 255, 25, 255))
+                                        .withHSB(new HSB(0f, 0.05f, 0.05f))
+                                        .withColorBalance(new ColorBalance(0.03f, 0.01f, -0.01f)))));
         public static final Supplier<InstantSlideItem> INSTANT_BLACK_AND_WHITE_SLIDE = Register.item("instant_black_and_white_slide",
-                () -> new InstantSlideItem(ExposureType.BLACK_AND_WHITE, new Item.Properties()));
+                () -> new InstantSlideItem(ExposureType.BLACK_AND_WHITE, new Item.Properties()
+                        .component(Exposure.DataComponents.FILM_STYLE,
+                                FilmStyle.create()
+                                        .withContrast(0.2f)
+                                        .withLevels(new Levels(0, 135, 255, 25, 255))
+                                        .withHSB(new HSB(0f, 0.05f, 0.05f))
+                                        .withColorBalance(new ColorBalance(0.03f, 0.01f, -0.01f)))));
 
         static void init() {
         }
