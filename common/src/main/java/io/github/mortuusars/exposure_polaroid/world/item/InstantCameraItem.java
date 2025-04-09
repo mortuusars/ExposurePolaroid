@@ -76,13 +76,13 @@ public class InstantCameraItem extends CameraItem {
 
     protected List<ShutterSpeed> defineShutterSpeeds() {
         return List.of(
-                new ShutterSpeed("1/125"),
-                new ShutterSpeed("1/103"),
-                new ShutterSpeed("1/81"),
+                new ShutterSpeed("1/200"),
+                new ShutterSpeed("1/111"),
+                new ShutterSpeed("1/78"),
                 new ShutterSpeed("1/60"),
-                new ShutterSpeed("1/41"),
                 new ShutterSpeed("1/30"),
-                new ShutterSpeed("1/20")
+                new ShutterSpeed("1/20"),
+                new ShutterSpeed("1/15")
         );
     }
 

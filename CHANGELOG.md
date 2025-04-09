@@ -1,10 +1,11 @@
 # Changelog
 
-## UNRELEASED
+## 1.1.0 - 2025-04-09
 [Requires Exposure 1.9.0+]
 - Added High-Sensitivity Slides.
 - Photos from Instant Slides look slightly different now (changed contrast and colors).
-- Instant Camera textures now show type of slide is installed.
+- Instant Camera now has slightly wider exposure range (shutter speeds).
+- Instant Camera textures now show type of slide that's installed.
 - Added slide removing sound.
 
 ## 1.0.4 - 2025-03-17
