@@ -1,6 +1,6 @@
 {
   "advancement.exposure_polaroid.instant_classic.description": "获取一台拍立得相机，它无需冲洗胶卷即可直接获取照片",
-"advancement.exposure_polaroid.instant_classic.title": "无需等待，经典立得",
+  "advancement.exposure_polaroid.instant_classic.title": "无需等待，经典立得",
   "exposure_polaroid.configuration.background_color": "背景颜色",
   "exposure_polaroid.configuration.focal_range": "默认焦距",
   "exposure_polaroid.configuration.font_main_color": "主字体颜色",
@@ -19,10 +19,16 @@
   "gui.exposure_polaroid.camera_controls.zoom.far": "远",
   "gui.exposure_polaroid.camera_controls.zoom.near": "近",
   "gui.exposure_polaroid.camera_controls.zoom.tooltip": "焦距",
+  "item.exposure_polaroid.high_sensitivity_instant_black_and_white_slide": "高感光度黑白相纸",
+  "item.exposure_polaroid.high_sensitivity_instant_color_slide": "高感光度彩色相纸",
   "item.exposure_polaroid.instant_black_and_white_slide": "黑白相纸",
   "item.exposure_polaroid.instant_camera": "拍立得相机",
   "item.exposure_polaroid.instant_camera.tooltip.details_insert": "§8拖入物品[§7右键单击§8]以插入相纸",
+  "item.exposure_polaroid.instant_camera.tooltip.details_insert_on_stand": "§8手持物品[§7潜行+使用§8]以插入相纸",
+  "item.exposure_polaroid.instant_camera.tooltip.details_remove": "§8[§7右键单击§8]以移除相纸",
+  "item.exposure_polaroid.instant_camera.tooltip.details_remove_on_stand": "§8[§7潜行+使用§8]以移除相纸",
   "item.exposure_polaroid.instant_camera.tooltip.slides": "§7相纸: §f%s/%s",
   "item.exposure_polaroid.instant_color_slide": "彩色相纸",
-  "subtitle.exposure_polaroid.instant_camera.slide_insert": "已插入相纸"
+  "subtitle.exposure_polaroid.instant_camera.slide_insert": "相纸：插入"
+  "subtitle.exposure_polaroid.instant_camera.slide_remove": "相纸：移除"
 }
