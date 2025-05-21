@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1 - 2025-04-09
+- Added explicit dependency on Exposure 1.9.0+
+
 ## 1.1.0 - 2025-04-09
 [Requires Exposure 1.9.0+]
 - Added High-Sensitivity Slides.
