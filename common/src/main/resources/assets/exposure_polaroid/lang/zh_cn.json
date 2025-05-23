@@ -29,6 +29,6 @@
   "item.exposure_polaroid.instant_camera.tooltip.details_remove_on_stand": "§8[§7潜行+使用§8]以移除相纸",
   "item.exposure_polaroid.instant_camera.tooltip.slides": "§7相纸: §f%s/%s",
   "item.exposure_polaroid.instant_color_slide": "彩色相纸",
-  "subtitle.exposure_polaroid.instant_camera.slide_insert": "相纸：插入"
+  "subtitle.exposure_polaroid.instant_camera.slide_insert": "相纸：插入",
   "subtitle.exposure_polaroid.instant_camera.slide_remove": "相纸：移除"
 }
