@@ -50,11 +50,9 @@ subprojects {
             url = "https://modmaven.dev"
         }
         maven { url = "https://cursemaven.com" }
-        maven { // saps.dev Maven (KubeJS and Rhino)
-            url = "https://maven.saps.dev/releases"
-            content {
-                includeGroup "dev.latvian.mods"
-            }
+        maven {
+            name = "latviandevReleases"
+            url = uri("https://maven.latvian.dev/releases")
         }
         maven {
             name = "Mortuusars Github Maven"

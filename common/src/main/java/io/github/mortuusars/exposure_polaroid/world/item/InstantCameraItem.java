@@ -6,6 +6,7 @@ import io.github.mortuusars.exposure.data.Lenses;
 import io.github.mortuusars.exposure.server.CameraInstances;
 import io.github.mortuusars.exposure.util.ExtraData;
 import io.github.mortuusars.exposure.world.camera.CameraId;
+import io.github.mortuusars.exposure.world.camera.ExposureType;
 import io.github.mortuusars.exposure.world.camera.capture.CaptureParameters;
 import io.github.mortuusars.exposure.world.camera.component.FocalRange;
 import io.github.mortuusars.exposure.world.camera.component.ShutterSpeed;
@@ -18,6 +19,7 @@ import io.github.mortuusars.exposure.world.item.camera.Attachment;
 import io.github.mortuusars.exposure.world.item.camera.CameraItem;
 import io.github.mortuusars.exposure.world.item.camera.Flash;
 import io.github.mortuusars.exposure.world.item.camera.Shutter;
+import io.github.mortuusars.exposure.world.photograph.PhotographType;
 import io.github.mortuusars.exposure_polaroid.Config;
 import io.github.mortuusars.exposure_polaroid.ExposurePolaroid;
 import io.github.mortuusars.exposure_polaroid.world.camera.PolaroidFrameExtraData;
@@ -283,8 +285,13 @@ public class InstantCameraItem extends CameraItem {
         Entity holderEntity = holder.asHolderEntity();
         Level level = holderEntity.level();
 
+        ExposureType type = InstantCameraAttachment.INSTANT_SLIDE
+                .map(stack, (i, s) -> i.getType())
+                .orElse(ExposureType.COLOR);
+
         ItemStack photograph = new ItemStack(Exposure.Items.PHOTOGRAPH.get());
         photograph.set(Exposure.DataComponents.PHOTOGRAPH_FRAME, frame);
+        photograph.set(Exposure.DataComponents.PHOTOGRAPH_TYPE, type);
 
         if (holder instanceof Player player) {
             if (!player.isCreative()) {

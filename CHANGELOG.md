@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2 - 2025-05-26
+- Fixed copying Black and White photographs made with Instant Camera not using correct dyes.
+  - Will only apply to new photographs.
+
 ## 1.1.1 - 2025-04-09
 - Added explicit dependency on Exposure 1.9.0+
 
