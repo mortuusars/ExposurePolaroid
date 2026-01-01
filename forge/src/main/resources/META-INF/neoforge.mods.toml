@@ -1,6 +1,6 @@
 modLoader="javafml"
 license="${mod_license}"
-loaderVersion="${neoforge_loader_version_range}"
+loaderVersion="${forge_loader_version_range}"
 issueTrackerURL="${mod_issues}"
 displayURL="${mod_page}"
 logoFile="${mod_id}_logo.png"
@@ -9,7 +9,7 @@ logoFile="${mod_id}_logo.png"
 config="${mod_id}-common.mixins.json"
 
 [[mixins]]
-config="${mod_id}-neoforge.mixins.json"
+config="${mod_id}-forge.mixins.json"
 
 [[mods]]
 modId="${mod_id}"

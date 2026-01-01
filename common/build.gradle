@@ -15,6 +15,10 @@ repositories {
         name = "Fuzs Mod Resources"
         url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
     }
+    // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
+    flatDir {
+        dir 'libs'
+    }
 }
 
 dependencies {
@@ -23,7 +27,9 @@ dependencies {
     // Do NOT use other classes from Fabric Loader.
     modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
 
-    modImplementation("io.github.mortuusars.exposure:exposure-${minecraft_version}-common:${exposure_version}")
+    //modImplementation("io.github.mortuusars.exposure:exposure-${minecraft_version}-common:${exposure_version}")
+    //use local copy for now
+    modImplementation("local:exposure-common:1.20.1-${exposure_version}")
 
     testImplementation(platform("org.junit:junit-bom:${project.property("jupiterVersion")}"))
     testImplementation("org.junit.jupiter:junit-jupiter")
