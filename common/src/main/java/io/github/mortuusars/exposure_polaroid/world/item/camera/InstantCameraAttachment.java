@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class InstantCameraAttachment {
     public static final Attachment<InstantSlideItem> INSTANT_SLIDE = new Attachment<>(ExposurePolaroid.resource("instant_slide"),
-            Exposure.DataComponents.FILM,
+            "film",
             stack -> stack.getItem() instanceof InstantSlideItem,
             InstantSlideItem.class,
             Config.Server.INSTANT_CAMERA_SLIDE_CAPACITY,

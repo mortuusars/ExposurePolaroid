@@ -73,11 +73,6 @@ subprojects {
 
     loom {
         silentMojangMappingsLicense()
-        runs {
-            client {
-                vmArgs '-XX:+AllowEnhancedClassRedefinition', '-XX:HotswapAgent=fatjar'
-            }
-        }
     }
 
     dependencies {

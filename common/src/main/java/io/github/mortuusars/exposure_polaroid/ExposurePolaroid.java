@@ -24,15 +24,9 @@ public class ExposurePolaroid {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static void init() {
-        Blocks.init();
-        BlockEntityTypes.init();
-        EntityTypes.init();
         Items.init();
-        DataComponents.init();
         CriteriaTriggers.init();
         ItemSubPredicates.init();
-        MenuTypes.init();
-        RecipeSerializers.init();
         SoundEvents.init();
         ArgumentTypes.init();
     }
@@ -41,83 +35,48 @@ public class ExposurePolaroid {
      * Creates resource location in the mod namespace with the given filePath.
      */
     public static ResourceLocation resource(String path) {
-        return ResourceLocation.fromNamespaceAndPath(ID, path);
-    }
-
-    public static class Blocks {
-        static void init() {
-        }
-    }
-
-    public static class BlockEntityTypes {
-        static void init() {
-        }
+        return new ResourceLocation(ID, path);
     }
 
     public static class Items {
         public static final Supplier<InstantCameraItem> INSTANT_CAMERA = Register.item("instant_camera",
                 () -> new InstantCameraItem(new Item.Properties()
-                        .stacksTo(1)
-                        .component(Exposure.DataComponents.CAMERA_ACTIVE, false)));
+                        .stacksTo(1)));
 
         public static final Supplier<InstantSlideItem> INSTANT_COLOR_SLIDE = Register.item("instant_color_slide",
-                () -> new InstantSlideItem(ExposureType.COLOR, new Item.Properties()
-                        .component(Exposure.DataComponents.FILM_STYLE,
+                () -> new InstantSlideItem(ExposureType.COLOR, new Item.Properties(),
                                 FilmStyle.create()
                                         .withContrast(0.2f)
                                         .withLevels(new Levels(0, 135, 255, 25, 255))
                                         .withHSB(new HSB(0f, 0.05f, 0.05f))
-                                        .withColorBalance(new ColorBalance(0.03f, 0.01f, -0.01f)))));
+                                        .withColorBalance(new ColorBalance(0.03f, 0.01f, -0.01f))));
         public static final Supplier<InstantSlideItem> INSTANT_BLACK_AND_WHITE_SLIDE = Register.item("instant_black_and_white_slide",
-                () -> new InstantSlideItem(ExposureType.BLACK_AND_WHITE, new Item.Properties()
-                        .component(Exposure.DataComponents.FILM_STYLE,
+                () -> new InstantSlideItem(ExposureType.BLACK_AND_WHITE, new Item.Properties(),
                                 FilmStyle.create()
                                         .withContrast(0.2f)
                                         .withLevels(new Levels(0, 135, 255, 25, 255))
                                         .withHSB(new HSB(0f, 0.05f, 0.05f))
-                                        .withColorBalance(new ColorBalance(0.03f, 0.01f, -0.01f)))));
+                                        .withColorBalance(new ColorBalance(0.03f, 0.01f, -0.01f))));
 
         public static final Supplier<InstantSlideItem> HIGH_SENSITIVITY_INSTANT_COLOR_SLIDE = Register.item("high_sensitivity_instant_color_slide",
-                () -> new InstantSlideItem(ExposureType.COLOR, new Item.Properties()
-                        .component(Exposure.DataComponents.FILM_STYLE,
+                () -> new InstantSlideItem(ExposureType.COLOR, new Item.Properties(),
                                 FilmStyle.create()
                                         .withSensitivity(2f)
                                         .withContrast(0.2f)
                                         .withLevels(new Levels(0, 135, 255, 25, 255))
                                         .withHSB(new HSB(0f, 0.05f, 0.05f))
                                         .withColorBalance(new ColorBalance(0.03f, 0.01f, -0.01f))
-                                        .withNoise(0.05f))));
+                                        .withNoise(0.05f)));
         public static final Supplier<InstantSlideItem> HIGH_SENSITIVITY_INSTANT_BLACK_AND_WHITE_SLIDE = Register.item("high_sensitivity_instant_black_and_white_slide",
-                () -> new InstantSlideItem(ExposureType.BLACK_AND_WHITE, new Item.Properties()
-                        .component(Exposure.DataComponents.FILM_STYLE,
+                () -> new InstantSlideItem(ExposureType.BLACK_AND_WHITE, new Item.Properties(),
                                 FilmStyle.create()
                                         .withSensitivity(2f)
                                         .withContrast(0.2f)
                                         .withLevels(new Levels(0, 135, 255, 25, 255))
                                         .withHSB(new HSB(0f, 0.05f, 0.05f))
                                         .withColorBalance(new ColorBalance(0.03f, 0.01f, -0.01f))
-                                        .withNoise(0.05f))));
+                                        .withNoise(0.05f)));
 
-        static void init() {
-        }
-    }
-
-    public static class DataComponents {
-        static void init() {
-        }
-    }
-
-    public static class EntityTypes {
-        static void init() {
-        }
-    }
-
-    public static class MenuTypes {
-        static void init() {
-        }
-    }
-
-    public static class RecipeSerializers {
         static void init() {
         }
     }
@@ -143,12 +102,6 @@ public class ExposurePolaroid {
     public static class Stats {
         public static final Map<ResourceLocation, StatFormatter> STATS = new HashMap<>();
 
-        @SuppressWarnings("SameParameterValue")
-        private static ResourceLocation register(ResourceLocation location, StatFormatter formatter) {
-            STATS.put(location, formatter);
-            return location;
-        }
-
         public static void register() {
             STATS.forEach((location, formatter) -> {
                 net.minecraft.core.Registry.register(BuiltInRegistries.CUSTOM_STAT, location, location);
@@ -167,22 +120,9 @@ public class ExposurePolaroid {
         }
     }
 
-    public static class LootTables {
-    }
-
-    public static class Tags {
-        public static class Items {
-        }
-
-        public static class Blocks {
-        }
-    }
-
     public static class ArgumentTypes {
         public static void init() {
         }
     }
 
-    public static class Registries {
-    }
 }

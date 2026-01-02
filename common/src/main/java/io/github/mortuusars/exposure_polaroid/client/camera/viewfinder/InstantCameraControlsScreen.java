@@ -1,5 +1,6 @@
 package io.github.mortuusars.exposure_polaroid.client.camera.viewfinder;
 
+import io.github.mortuusars.exposure.ModWidgetSprites;
 import io.github.mortuusars.exposure.client.camera.viewfinder.Viewfinder;
 import io.github.mortuusars.exposure.client.camera.viewfinder.ViewfinderCameraControlsScreen;
 import io.github.mortuusars.exposure.world.camera.Camera;
@@ -9,19 +10,18 @@ import io.github.mortuusars.exposure_polaroid.client.gui.screen.camera.button.Sl
 import io.github.mortuusars.exposure_polaroid.client.gui.screen.camera.button.ZoomWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
-import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.network.chat.Component;
 
 public class InstantCameraControlsScreen extends ViewfinderCameraControlsScreen {
-    public static final WidgetSprites ZOOM_SPRITES = new WidgetSprites(
+    public static final ModWidgetSprites ZOOM_SPRITES = ModWidgetSprites.withPrefix(
             ExposurePolaroid.resource("camera_controls/zoom"),
             ExposurePolaroid.resource("camera_controls/zoom_disabled"),
-            ExposurePolaroid.resource("camera_controls/zoom_highlighted"));
+            ExposurePolaroid.resource("camera_controls/zoom_highlighted"),49,18);
 
-    public static final WidgetSprites SLIDE_COUNTER_SPRITES = new WidgetSprites(
+    public static final ModWidgetSprites SLIDE_COUNTER_SPRITES = ModWidgetSprites.withPrefix(
             ExposurePolaroid.resource("camera_controls/slide_counter"),
             ExposurePolaroid.resource("camera_controls/slide_counter_disabled"),
-            ExposurePolaroid.resource("camera_controls/slide_counter_highlighted"));
+            ExposurePolaroid.resource("camera_controls/slide_counter_highlighted"),49,18);
 
     protected static final int SIDE_BUTTONS_WIDTH = 49;
 

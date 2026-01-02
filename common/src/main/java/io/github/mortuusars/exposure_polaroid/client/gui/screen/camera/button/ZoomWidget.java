@@ -1,6 +1,7 @@
 package io.github.mortuusars.exposure_polaroid.client.gui.screen.camera.button;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import io.github.mortuusars.exposure.ModWidgetSprites;
 import io.github.mortuusars.exposure.world.camera.Camera;
 import io.github.mortuusars.exposure.world.item.camera.CameraSettings;
 import io.github.mortuusars.exposure_polaroid.Config;
@@ -8,7 +9,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -16,12 +16,12 @@ import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 public class ZoomWidget extends AbstractWidget {
-    protected final WidgetSprites sprites;
+    protected final ModWidgetSprites sprites;
     protected final Camera camera;
     protected final int secondaryFontColor;
     protected final int mainFontColor;
 
-    public ZoomWidget(int x, int y, int width, int height, WidgetSprites sprites, Camera camera) {
+    public ZoomWidget(int x, int y, int width, int height, ModWidgetSprites sprites, Camera camera) {
         super(x, y, width, height, Component.empty());
         this.sprites = sprites;
         this.camera = camera;
@@ -40,7 +40,7 @@ public class ZoomWidget extends AbstractWidget {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         ResourceLocation sliderSprite = sprites.get(this.isActive(), this.isHoveredOrFocused());
-        guiGraphics.blitSprite(sliderSprite, getX(), getY(), width, height);
+        guiGraphics.blit(sliderSprite, getX(), getY(),0,0, width, height,sprites.width(),sprites.height());
 
         guiGraphics.drawString(font, text, getX() + xPos, getY() + 8, secondaryFontColor, false);
         guiGraphics.drawString(font, text, getX() + xPos, getY() + 7, mainFontColor, false);

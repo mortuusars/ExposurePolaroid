@@ -3,21 +3,21 @@ package io.github.mortuusars.exposure_polaroid;
 import io.github.mortuusars.exposure.Exposure;
 import io.github.mortuusars.exposure.util.color.Color;
 import io.github.mortuusars.exposure.world.camera.component.FocalRange;
-import net.neoforged.neoforge.common.ModConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 /**
  * Using ForgeConfigApiPort on fabric allows using forge config in both environments and without extra dependencies on forge.
  */
 public class Config {
     public static class Server {
-        public static final ModConfigSpec SPEC;
+        public static final ForgeConfigSpec SPEC;
 
-        public static final ModConfigSpec.ConfigValue<String> INSTANT_CAMERA_FOCAL_RANGE;
-        public static final ModConfigSpec.IntValue INSTANT_CAMERA_FRAME_SIZE;
-        public static final ModConfigSpec.IntValue INSTANT_CAMERA_SLIDE_CAPACITY;
+        public static final ForgeConfigSpec.ConfigValue<String> INSTANT_CAMERA_FOCAL_RANGE;
+        public static final ForgeConfigSpec.IntValue INSTANT_CAMERA_FRAME_SIZE;
+        public static final ForgeConfigSpec.IntValue INSTANT_CAMERA_SLIDE_CAPACITY;
 
         static {
-            ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
+            ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
             {
                 builder.push("instant_camera");
@@ -40,20 +40,20 @@ public class Config {
     }
 
     public static class Client {
-        public static final ModConfigSpec SPEC;
+        public static final ForgeConfigSpec SPEC;
 
         // UI
-        public static final ModConfigSpec.BooleanValue INSTANT_CAMERA_SHOW_TOOLTIP_DETAILS;
-        public static final ModConfigSpec.BooleanValue INSTANT_CAMERA_SHOW_SLIDES_COUNT_IN_TOOLTIP;
-        public static final ModConfigSpec.BooleanValue INSTANT_CAMERA_SHOW_FULLNESS_BAR_ON_ITEM;
+        public static final ForgeConfigSpec.BooleanValue INSTANT_CAMERA_SHOW_TOOLTIP_DETAILS;
+        public static final ForgeConfigSpec.BooleanValue INSTANT_CAMERA_SHOW_SLIDES_COUNT_IN_TOOLTIP;
+        public static final ForgeConfigSpec.BooleanValue INSTANT_CAMERA_SHOW_FULLNESS_BAR_ON_ITEM;
 
         // VIEWFINDER
-        public static final ModConfigSpec.ConfigValue<String> VIEWFINDER_BACKGROUND_COLOR;
-        public static final ModConfigSpec.ConfigValue<String> VIEWFINDER_FONT_MAIN_COLOR;
-        public static final ModConfigSpec.ConfigValue<String> VIEWFINDER_FONT_SECONDARY_COLOR;
+        public static final ForgeConfigSpec.ConfigValue<String> VIEWFINDER_BACKGROUND_COLOR;
+        public static final ForgeConfigSpec.ConfigValue<String> VIEWFINDER_FONT_MAIN_COLOR;
+        public static final ForgeConfigSpec.ConfigValue<String> VIEWFINDER_FONT_SECONDARY_COLOR;
 
         static {
-            ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
+            ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
             {
                 builder.push("ui");
@@ -88,7 +88,7 @@ public class Config {
         }
     }
 
-    public static int getColor(ModConfigSpec.ConfigValue<String> config) {
+    public static int getColor(ForgeConfigSpec.ConfigValue<String> config) {
         String value = config.get();
         try {
             return Color.fromHex(value).getARGB();

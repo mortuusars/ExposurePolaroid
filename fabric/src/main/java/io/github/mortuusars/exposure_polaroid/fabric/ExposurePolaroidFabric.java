@@ -34,10 +34,5 @@ public class ExposurePolaroidFabric implements ModInitializer {
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
         });
-
-        ExposurePolaroid.Stats.register();
-
-        FabricC2SPackets.register();
-        FabricS2CPackets.register();
     }
 }
