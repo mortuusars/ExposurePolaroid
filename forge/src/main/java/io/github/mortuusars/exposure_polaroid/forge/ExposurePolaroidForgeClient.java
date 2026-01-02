@@ -1,4 +1,4 @@
-package io.github.mortuusars.exposure_polaroid.neoforge;
+package io.github.mortuusars.exposure_polaroid.forge;
 
 import net.minecraftforge.eventbus.api.IEventBus;
 

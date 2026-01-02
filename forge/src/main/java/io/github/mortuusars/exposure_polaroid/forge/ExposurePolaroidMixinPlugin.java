@@ -1,4 +1,4 @@
-package io.github.mortuusars.exposure_polaroid.neoforge;
+package io.github.mortuusars.exposure_polaroid.forge;
 
 import com.google.common.collect.ImmutableMap;
 import org.objectweb.asm.tree.ClassNode;

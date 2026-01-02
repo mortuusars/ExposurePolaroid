@@ -61,6 +61,10 @@ dependencies {
 }
 
 loom {
+    forge {
+        convertAccessWideners = true
+        mixinConfig "exposure_polaroid-common.mixins.json"
+    }
     runs {
         create("client2") {
             inherit(getByName("client"))

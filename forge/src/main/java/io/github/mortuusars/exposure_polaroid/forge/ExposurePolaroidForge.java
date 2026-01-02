@@ -1,4 +1,4 @@
-package io.github.mortuusars.exposure_polaroid.neoforge;
+package io.github.mortuusars.exposure_polaroid.forge;
 
 import com.google.common.base.Preconditions;
 import io.github.mortuusars.exposure_polaroid.Config;
@@ -22,16 +22,8 @@ public class ExposurePolaroidForge {
         @Nullable IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         Preconditions.checkNotNull(modEventBus);
 
-        RegisterImpl.BLOCK_ENTITY_TYPES.register(modEventBus);
-        RegisterImpl.ENTITY_TYPES.register(modEventBus);
         RegisterImpl.ITEMS.register(modEventBus);
-        RegisterImpl.MENU_TYPES.register(modEventBus);
-        RegisterImpl.RECIPE_SERIALIZERS.register(modEventBus);
         RegisterImpl.SOUND_EVENTS.register(modEventBus);
-        RegisterImpl.COMMAND_ARGUMENT_TYPES.register(modEventBus);
-        RegisterImpl.WORLD_GEN_FEATURES.register(modEventBus);
-        RegisterImpl.PARTICLE_TYPES.register(modEventBus);
-        RegisterImpl.CUSTOM_STATS.register(modEventBus);
 
         if (FMLEnvironment.dist.isClient()) {
             ExposurePolaroidForgeClient.init(modEventBus);

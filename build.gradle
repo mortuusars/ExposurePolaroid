@@ -107,6 +107,8 @@ subprojects {
                 forge_loader_version_range : forge_loader_version_range,
                 create_version_range       : create_version_range,
                 create_version_range_reason: create_version_range_reason,
+                required_exposure_version_range_forge : required_exposure_version_range_forge,
+                required_exposure_version_range_fabric : required_exposure_version_range_fabric,
                 mod_id                     : mod_id,
                 mod_name                   : mod_name,
                 mod_version                : mod_version,

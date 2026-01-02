@@ -1,4 +1,4 @@
-package io.github.mortuusars.exposure_polaroid.neoforge.event;
+package io.github.mortuusars.exposure_polaroid.forge.event;
 
 import io.github.mortuusars.exposure.Exposure;
 import io.github.mortuusars.exposure_polaroid.ExposurePolaroid;
