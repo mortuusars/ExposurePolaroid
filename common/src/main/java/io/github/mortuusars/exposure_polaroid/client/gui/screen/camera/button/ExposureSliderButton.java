@@ -15,7 +15,7 @@ import net.minecraft.util.Mth;
 import java.util.List;
 
 public class ExposureSliderButton extends Button {
-    public static final ResourceLocation BASE = ExposurePolaroid.resource("camera_controls/exposure_slider_base");
+    public static final ResourceLocation BASE = ExposurePolaroid.resource("textures/gui/sprites/camera_controls/exposure_slider_base.png");
 
     public static final ModWidgetSprites SLIDER = ModWidgetSprites.withPrefix(
             ExposurePolaroid.resource("camera_controls/exposure_slider"),
@@ -36,7 +36,7 @@ public class ExposureSliderButton extends Button {
 
     @Override
     protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        guiGraphics.blit(BASE, getX(), getY() + 1,0,0, width, height - 1);
+        guiGraphics.blit(BASE, getX(), getY() + 1,0,0, width, height - 1,79,14);//79x14
 
         List<ShutterSpeed> shutterSpeeds = camera.map((i, s) -> i.getAvailableShutterSpeeds()).orElse(List.of(ShutterSpeed.DEFAULT));
         if (shutterSpeeds.isEmpty()) {
@@ -51,8 +51,8 @@ public class ExposureSliderButton extends Button {
         int offset = Math.round(SLIDER_MOVEMENT_RANGE * position);
 
         ResourceLocation sliderSprite = SLIDER.get(this.isActive(), this.isHoveredOrFocused());
-        guiGraphics.blit(sliderSprite, SLIDER_WIDTH, SLIDER_HEIGHT, offset, 0,0,0,
-                getX() + 8, getY(), 64, 15);
+        guiGraphics.blit(sliderSprite, getX() + 8, getY(), offset, 0,SLIDER_WIDTH - SLIDER_MOVEMENT_RANGE,
+                SLIDER_HEIGHT,SLIDER_WIDTH, SLIDER_HEIGHT);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class ExposurePolaroidFabricClient implements ClientModInitializer {
 
         ModelLoadingPlugin.register(pluginContext ->
                 pluginContext.addModels(
-                        ExposurePolaroidClient.Models.INSTANT_CAMERA_GUI.id()));
+                        ExposurePolaroidClient.Models.INSTANT_CAMERA_GUI));
 
         FabricS2CPacketHandler.register();
     }
