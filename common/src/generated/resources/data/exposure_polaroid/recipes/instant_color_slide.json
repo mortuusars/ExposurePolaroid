@@ -1,24 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "equipment",
+  "category": "misc",
   "key": {
-    "L": {
-      "item": "minecraft:lapis_lazuli"
+    "C": {
+      "item": "minecraft:cyan_dye"
     },
     "K": {
       "item": "minecraft:black_dye"
     },
-    "C": {
-      "item": "minecraft:cyan_dye"
+    "L": {
+      "item": "minecraft:lapis_lazuli"
     },
     "M": {
       "item": "minecraft:magenta_dye"
     },
-    "Y": {
-      "item": "minecraft:yellow_dye"
-    },
     "P": {
       "item": "minecraft:paper"
+    },
+    "Y": {
+      "item": "minecraft:yellow_dye"
     }
   },
   "pattern": [
@@ -27,7 +27,7 @@
     "PPP"
   ],
   "result": {
-    "id": "exposure_polaroid:instant_color_slide",
-    "count": 3
-  }
+    "item": "exposure_polaroid:instant_color_slide"
+  },
+  "show_notification": true
 }

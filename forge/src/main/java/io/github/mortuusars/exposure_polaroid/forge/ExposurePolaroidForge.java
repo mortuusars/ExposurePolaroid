@@ -22,6 +22,7 @@ public class ExposurePolaroidForge {
         @Nullable IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         Preconditions.checkNotNull(modEventBus);
 
+        modEventBus.addListener(PolaroidDatagen::gather);
         RegisterImpl.ITEMS.register(modEventBus);
         RegisterImpl.SOUND_EVENTS.register(modEventBus);
 

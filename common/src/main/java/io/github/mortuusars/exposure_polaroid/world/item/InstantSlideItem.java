@@ -1,9 +1,9 @@
 package io.github.mortuusars.exposure_polaroid.world.item;
 
-import io.github.mortuusars.exposure.Exposure;
 import io.github.mortuusars.exposure.world.camera.ExposureType;
 import io.github.mortuusars.exposure.world.camera.film.properties.FilmStyle;
 import io.github.mortuusars.exposure.world.item.SensitiveFilmItem;
+import io.github.mortuusars.exposure.world.item.interfaces.DefaultFilmStyle;
 import io.github.mortuusars.exposure_polaroid.Config;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class InstantSlideItem extends Item implements SensitiveFilmItem {
+public class InstantSlideItem extends Item implements SensitiveFilmItem, DefaultFilmStyle {
     protected final ExposureType type;
 
     final FilmStyle defaultFilmStyle;
@@ -24,8 +24,9 @@ public class InstantSlideItem extends Item implements SensitiveFilmItem {
         this.defaultFilmStyle = defaultFilmStyle;
     }
 
-    public FilmStyle getOrDefault(ItemStack stack) {
-        return Exposure.DataComponents.getFilmStyle(stack,defaultFilmStyle);
+    @Override
+    public FilmStyle getDefaultFilmStyle() {
+        return defaultFilmStyle;
     }
 
     @Override

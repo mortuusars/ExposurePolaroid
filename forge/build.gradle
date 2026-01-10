@@ -64,6 +64,7 @@ loom {
     forge {
         convertAccessWideners = true
         mixinConfig "exposure_polaroid-common.mixins.json"
+        mixinConfig "exposure_polaroid-forge.mixins.json"
     }
     runs {
         create("client2") {
@@ -73,6 +74,14 @@ loom {
             programArgs("--username", "AnotherDev")
 
             client()
+        }
+        data {
+            data()
+            programArgs "--all"
+            programArgs "--mod", "${mod_id}"
+            programArgs "--output", project(":common").file("src/generated/resources").absolutePath
+            programArgs "--existing", project(":common").file("src/main/resources").absolutePath
+            programArgs "--existing-mod", "exposure"
         }
     }
 }

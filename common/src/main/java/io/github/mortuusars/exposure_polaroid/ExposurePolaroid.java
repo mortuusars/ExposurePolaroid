@@ -2,20 +2,15 @@ package io.github.mortuusars.exposure_polaroid;
 
 import com.google.common.base.Preconditions;
 import com.mojang.logging.LogUtils;
-import io.github.mortuusars.exposure.Exposure;
 import io.github.mortuusars.exposure.world.camera.ExposureType;
 import io.github.mortuusars.exposure.world.camera.film.properties.*;
 import io.github.mortuusars.exposure_polaroid.world.item.InstantCameraItem;
 import io.github.mortuusars.exposure_polaroid.world.item.InstantSlideItem;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.stats.StatFormatter;
 import net.minecraft.world.item.Item;
 import org.slf4j.Logger;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Supplier;
 
 
@@ -25,10 +20,7 @@ public class ExposurePolaroid {
 
     public static void init() {
         Items.init();
-        CriteriaTriggers.init();
-        ItemSubPredicates.init();
         SoundEvents.init();
-        ArgumentTypes.init();
     }
 
     /**
@@ -96,32 +88,6 @@ public class ExposurePolaroid {
         }
 
         static void init() {
-        }
-    }
-
-    public static class Stats {
-        public static final Map<ResourceLocation, StatFormatter> STATS = new HashMap<>();
-
-        public static void register() {
-            STATS.forEach((location, formatter) -> {
-                net.minecraft.core.Registry.register(BuiltInRegistries.CUSTOM_STAT, location, location);
-                net.minecraft.stats.Stats.CUSTOM.get(location, formatter);
-            });
-        }
-    }
-
-    public static class CriteriaTriggers {
-        public static void init() {
-        }
-    }
-
-    public static class ItemSubPredicates {
-        public static void init() {
-        }
-    }
-
-    public static class ArgumentTypes {
-        public static void init() {
         }
     }
 

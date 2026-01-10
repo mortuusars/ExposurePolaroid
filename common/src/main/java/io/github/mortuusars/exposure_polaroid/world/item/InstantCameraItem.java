@@ -220,9 +220,9 @@ public class InstantCameraItem extends CameraItem {
             // For some unknown reason, inserting slides when camera already has some does not sync it to the server.
             // But only if the player is in "inventory" tab of creative inventory.
             // This fixes it:
-            if (player.isCreative()) {
-                Minecrft.gameMode().handleCreativeModeItemAdd(stack, slot.index);
-            }
+       //     if (player.isCreative()) {
+       //         Minecrft.gameMode().handleCreativeModeItemAdd(stack, slot.index);
+       //     }
             return true;
         }
 

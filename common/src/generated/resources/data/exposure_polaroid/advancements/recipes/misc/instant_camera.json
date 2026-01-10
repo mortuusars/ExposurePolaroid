@@ -1,17 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_camera_and_crystals": {
+    "has_iron_ingot": {
       "conditions": {
         "items": [
           {
             "items": [
-              "exposure_polaroid:instant_camera"
-            ]
-          },
-          {
-            "items": [
-              "minecraft:prismarine_crystals"
+              "minecraft:iron_ingot"
             ]
           }
         ]
@@ -20,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "exposure_polaroid:high_sensitivity_instant_black_and_white_slide"
+        "recipe": "exposure_polaroid:instant_camera"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_camera_and_crystals",
+      "has_iron_ingot",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "exposure_polaroid:high_sensitivity_instant_black_and_white_slide"
+      "exposure_polaroid:instant_camera"
     ]
   },
   "sends_telemetry_event": false

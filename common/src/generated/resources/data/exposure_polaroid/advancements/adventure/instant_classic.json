@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "items": "exposure_polaroid:instant_camera"
+            "items": [
+              "exposure_polaroid:instant_camera"
+            ]
           }
         ]
       },
@@ -13,23 +15,24 @@
     }
   },
   "display": {
-    "frame": "task",
-    "hidden": false,
-    "show_toast": true,
     "announce_to_chat": true,
-    "icon": {
-      "id": "exposure_polaroid:instant_camera"
-    },
-    "title": {
-      "translate": "advancement.exposure_polaroid.instant_classic.title"
-    },
     "description": {
       "translate": "advancement.exposure_polaroid.instant_classic.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "exposure_polaroid:instant_camera"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.exposure_polaroid.instant_classic.title"
     }
   },
   "requirements": [
     [
       "get_instant_camera"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

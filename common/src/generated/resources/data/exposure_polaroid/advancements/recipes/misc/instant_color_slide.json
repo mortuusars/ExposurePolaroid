@@ -1,17 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_camera_and_crystals": {
+    "has_black_dye": {
       "conditions": {
         "items": [
           {
             "items": [
-              "exposure_polaroid:instant_camera"
-            ]
-          },
-          {
-            "items": [
-              "minecraft:prismarine_crystals"
+              "minecraft:black_dye"
             ]
           }
         ]
@@ -20,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "exposure_polaroid:high_sensitivity_instant_color_slide"
+        "recipe": "exposure_polaroid:instant_color_slide"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_camera_and_crystals",
+      "has_black_dye",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "exposure_polaroid:high_sensitivity_instant_color_slide"
+      "exposure_polaroid:instant_color_slide"
     ]
   },
   "sends_telemetry_event": false

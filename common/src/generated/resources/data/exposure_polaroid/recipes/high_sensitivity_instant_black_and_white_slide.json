@@ -1,9 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "equipment",
+  "category": "misc",
   "key": {
     "B": {
       "item": "minecraft:bone_meal"
+    },
+    "C": {
+      "item": "minecraft:prismarine_crystals"
     },
     "K": {
       "item": "minecraft:black_dye"
@@ -13,11 +16,11 @@
     }
   },
   "pattern": [
-    "BKB",
+    "BKC",
     "PPP"
   ],
   "result": {
-    "id": "exposure_polaroid:instant_black_and_white_slide",
-    "count": 3
-  }
+    "item": "exposure_polaroid:high_sensitivity_instant_black_and_white_slide"
+  },
+  "show_notification": true
 }

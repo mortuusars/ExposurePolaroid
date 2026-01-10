@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_camera": {
+    "has_black_dye": {
       "conditions": {
         "items": [
           {
             "items": [
-              "exposure_polaroid:instant_camera"
+              "minecraft:black_dye"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_camera",
+      "has_black_dye",
       "has_the_recipe"
     ]
   ],
