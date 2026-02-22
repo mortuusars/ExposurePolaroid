@@ -11,6 +11,6 @@
 <h1></h1>
 
 <div align="center">
-  <h3>Camera mod for Minecraft with focus on process and aesthetics</h3>
+  <h3>Addon for Exposure</h3>
   <a href="https://moddedmc.wiki/project/exposure">Wiki</a>
 </div>
