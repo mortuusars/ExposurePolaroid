@@ -27,7 +27,7 @@
     "exposure_polaroid-common.mixins.json"
   ],
   "depends": {
-    "minecraft": ">=1.21.0",
+    "minecraft": ">=1.20.1",
     "fabric": "*",
     "fabric-api": "*",
     "exposure": "${required_exposure_version_range_fabric}"

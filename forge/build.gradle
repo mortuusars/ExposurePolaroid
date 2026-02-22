@@ -49,12 +49,10 @@ dependencies {
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
     implementation(include("io.github.llamalad7:mixinextras-forge:0.4.1"))
 
-    //modImplementation("io.github.mortuusars.exposure:exposure-${minecraft_version}-neoforge:${exposure_version}")
-    //use local copy for now
-    modImplementation("local:exposure-forge:1.20.1-${exposure_version}")
+    modImplementation("io.github.mortuusars.exposure:exposure-${minecraft_version}-forge:${exposure_version}")
 
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") { transitive = false }
-  //  modRuntimeOnly("io.github.mortuusars.exposure_catalog:exposure_catalog-neoforge:${minecraft_version}-${exposure_catalog_version}")
+  //  modRuntimeOnly("io.github.mortuusars.exposure_catalog:exposure_catalog-forge:${minecraft_version}-${exposure_catalog_version}")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive = false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')

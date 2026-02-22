@@ -1,7 +1,7 @@
 package io.github.mortuusars.exposure_polaroid.world.camera;
 
-import io.github.mortuusars.exposure.util.ExtraData;
+import io.github.mortuusars.exposure.util.NbtType;
 
 public class PolaroidFrameExtraData {
-    public static final ExtraData.Type<Boolean> INSTANT = ExtraData.Type.bool("instant");
+    public static final NbtType<Boolean> INSTANT = NbtType.bool("instant");
 }

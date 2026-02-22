@@ -2,7 +2,7 @@ plugins {
     id "dev.architectury.loom" version "1.13-SNAPSHOT" apply false
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id 'com.gradleup.shadow' version '8.3.6' apply false
-    id "me.modmuss50.mod-publish-plugin" version "0.8.4"
+    id "me.modmuss50.mod-publish-plugin" version "1.1.0"
 }
 
 architectury {
@@ -100,25 +100,23 @@ subprojects {
 
     processResources {
         var expandProps = [
-                minecraft_version          : minecraft_version,
-                minecraft_version_range    : minecraft_version_range,
-                forge_version              : forge_version,
-                forge_version_range        : forge_version_range,
-                forge_loader_version_range : forge_loader_version_range,
-                create_version_range       : create_version_range,
-                create_version_range_reason: create_version_range_reason,
-                required_exposure_version_range_forge : required_exposure_version_range_forge,
-                required_exposure_version_range_fabric : required_exposure_version_range_fabric,
-                mod_id                     : mod_id,
-                mod_name                   : mod_name,
-                mod_version                : mod_version,
-                mod_authors                : mod_authors,
-                mod_description            : mod_description,
-                mod_issues                 : mod_issues,
-                mod_page                   : mod_page,
-                mod_github                 : mod_github,
-                mod_license                  : mod_license,
-                maven_group                  : maven_group
+                minecraft_version                           : minecraft_version,
+                minecraft_version_range                     : minecraft_version_range,
+                forge_version                               : forge_version,
+                forge_version_range                         : forge_version_range,
+                forge_loader_version_range                  : forge_loader_version_range,
+                required_exposure_version_range_forge       : required_exposure_version_range_forge,
+                required_exposure_version_range_fabric      : required_exposure_version_range_fabric,
+                mod_id                                      : mod_id,
+                mod_name                                    : mod_name,
+                mod_version                                 : mod_version,
+                mod_authors                                 : mod_authors,
+                mod_description                             : mod_description,
+                mod_issues                                  : mod_issues,
+                mod_page                                    : mod_page,
+                mod_github                                  : mod_github,
+                mod_license                                 : mod_license,
+                maven_group                                 : maven_group
         ]
         filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/mods.toml', "*.mixins.json"]) {
             expand expandProps
@@ -186,10 +184,11 @@ task printLatestVersionChangelog {
     }
 }
 
-/*publishMods {
+publishMods {
     changelog = project.ext.changelog
     type = STABLE
     dryRun = providers.environmentVariable("CURSEFORGE_TOKEN").getOrNull() == null || providers.environmentVariable("MODRINTH_TOKEN").getOrNull() == null
+    // dryRun = true
 
     def cfOptions = curseforgeOptions {
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
@@ -206,11 +205,11 @@ task printLatestVersionChangelog {
         minecraftVersions.add("${minecraft_version}")
     }
 
-    curseforge("curseforgeNeoForge") {
+    curseforge("curseforgeForge") {
         from cfOptions
-        file project(":neoforge")
-        modLoaders.add("neoforge")
-        displayName = "${mod_name} - NeoForge ${minecraft_version} - ${mod_version}"
+        file project(":forge")
+        modLoaders.add("forge")
+        displayName = "${mod_name} - Forge ${minecraft_version} - ${mod_version}"
         requires("exposure")
     }
 
@@ -223,10 +222,10 @@ task printLatestVersionChangelog {
         requires("exposure")
     }
 
-    modrinth("modrinthNeoForge") {
+    modrinth("modrinthForge") {
         from mrOptions
-        file project(":neoforge")
-        modLoaders.add("neoforge")
+        file project(":forge")
+        modLoaders.add("forge")
         displayName = "${mod_name} - ${mod_version}"
         requires("exposure")
     }
@@ -239,4 +238,4 @@ task printLatestVersionChangelog {
         requires("fabric-api")
         requires("exposure")
     }
-}*/
+}

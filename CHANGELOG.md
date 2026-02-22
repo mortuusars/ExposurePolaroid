@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2 - 1.20.1 - 2026-02-22
+- Backport to 1.20.1.
+  - Most of the work was done by _Tfarcenim_ who was commissioned by _MonoRedBaron_.
+  - Requires new Exposure (1.9.14+).
+
 ## 1.1.2 - 2025-05-26
 - Fixed copying Black and White photographs made with Instant Camera not using correct dyes.
   - Will only apply to new photographs.

@@ -1,10 +1,8 @@
 package io.github.mortuusars.exposure_polaroid.world.item;
 
 import io.github.mortuusars.exposure.Exposure;
-import io.github.mortuusars.exposure.client.util.Minecrft;
 import io.github.mortuusars.exposure.data.Lenses;
 import io.github.mortuusars.exposure.server.CameraInstances;
-import io.github.mortuusars.exposure.util.ExtraData;
 import io.github.mortuusars.exposure.world.camera.CameraId;
 import io.github.mortuusars.exposure.world.camera.ExposureType;
 import io.github.mortuusars.exposure.world.camera.capture.CaptureParameters;
@@ -19,7 +17,6 @@ import io.github.mortuusars.exposure.world.item.camera.Attachment;
 import io.github.mortuusars.exposure.world.item.camera.CameraItem;
 import io.github.mortuusars.exposure.world.item.camera.Flash;
 import io.github.mortuusars.exposure.world.item.camera.Shutter;
-import io.github.mortuusars.exposure.world.photograph.PhotographType;
 import io.github.mortuusars.exposure_polaroid.Config;
 import io.github.mortuusars.exposure_polaroid.ExposurePolaroid;
 import io.github.mortuusars.exposure_polaroid.world.camera.PolaroidFrameExtraData;
@@ -28,6 +25,7 @@ import io.github.mortuusars.exposure_polaroid.world.item.camera.InstantCameraShu
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -367,9 +365,10 @@ public class InstantCameraItem extends CameraItem {
     }
 
     @Override
-    protected void addFrameExtraData(CameraHolder holder, ServerLevel level, ItemStack camera, CaptureParameters captureParameters, List<BlockPos> positionsInFrame, List<LivingEntity> entitiesInFrame, ExtraData data) {
-        data.put(PolaroidFrameExtraData.INSTANT, true);
-        super.addFrameExtraData(holder, level, camera, captureParameters, positionsInFrame, entitiesInFrame, data);
+    protected void addFrameExtraData(CameraHolder holder, ServerLevel level, ItemStack camera, CaptureParameters params,
+                                     List<BlockPos> positionsInFrame, List<LivingEntity> entitiesInFrame, CompoundTag data) {
+        data.putBoolean(PolaroidFrameExtraData.INSTANT.key(), true);
+        super.addFrameExtraData(holder, level, camera, params, positionsInFrame, entitiesInFrame, data);
     }
 
     @Override
