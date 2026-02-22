@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "io.github.mortuusars.exposure_polaroid.forge.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "ForgeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

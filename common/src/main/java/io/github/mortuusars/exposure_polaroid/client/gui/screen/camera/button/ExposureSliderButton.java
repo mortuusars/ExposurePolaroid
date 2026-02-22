@@ -1,13 +1,13 @@
 package io.github.mortuusars.exposure_polaroid.client.gui.screen.camera.button;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import io.github.mortuusars.exposure.ModWidgetSprites;
 import io.github.mortuusars.exposure.world.camera.Camera;
 import io.github.mortuusars.exposure.world.camera.component.ShutterSpeed;
 import io.github.mortuusars.exposure.world.item.camera.CameraSettings;
 import io.github.mortuusars.exposure_polaroid.ExposurePolaroid;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -15,12 +15,12 @@ import net.minecraft.util.Mth;
 import java.util.List;
 
 public class ExposureSliderButton extends Button {
-    public static final ResourceLocation BASE = ExposurePolaroid.resource("camera_controls/exposure_slider_base");
+    public static final ResourceLocation BASE = ExposurePolaroid.resource("textures/gui/sprites/camera_controls/exposure_slider_base.png");
 
-    public static final WidgetSprites SLIDER = new WidgetSprites(
+    public static final ModWidgetSprites SLIDER = ModWidgetSprites.withPrefix(
             ExposurePolaroid.resource("camera_controls/exposure_slider"),
             ExposurePolaroid.resource("camera_controls/exposure_slider_disabled"),
-            ExposurePolaroid.resource("camera_controls/exposure_slider_highlighted"));
+            ExposurePolaroid.resource("camera_controls/exposure_slider_highlighted"),122,15);
 
     protected static final int SLIDER_WIDTH = 122;
     protected static final int SLIDER_HEIGHT = 15;
@@ -36,7 +36,7 @@ public class ExposureSliderButton extends Button {
 
     @Override
     protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        guiGraphics.blitSprite(BASE, getX(), getY() + 1, width, height - 1);
+        guiGraphics.blit(BASE, getX(), getY() + 1,0,0, width, height - 1,79,14);//79x14
 
         List<ShutterSpeed> shutterSpeeds = camera.map((i, s) -> i.getAvailableShutterSpeeds()).orElse(List.of(ShutterSpeed.DEFAULT));
         if (shutterSpeeds.isEmpty()) {
@@ -51,12 +51,12 @@ public class ExposureSliderButton extends Button {
         int offset = Math.round(SLIDER_MOVEMENT_RANGE * position);
 
         ResourceLocation sliderSprite = SLIDER.get(this.isActive(), this.isHoveredOrFocused());
-        guiGraphics.blitSprite(sliderSprite, SLIDER_WIDTH, SLIDER_HEIGHT, offset, 0,
-                getX() + 8, getY(), 64, 15);
+        guiGraphics.blit(sliderSprite, getX() + 8, getY(), offset, 0,SLIDER_WIDTH - SLIDER_MOVEMENT_RANGE,
+                SLIDER_HEIGHT,SLIDER_WIDTH, SLIDER_HEIGHT);
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double scrollY) {
         if (scrollY != 0) {
             //noinspection SuspiciousNameCombination
             moveSlider(Mth.sign(scrollY));

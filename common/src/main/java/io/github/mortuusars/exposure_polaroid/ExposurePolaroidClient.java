@@ -17,6 +17,7 @@ import io.github.mortuusars.exposure_polaroid.world.item.InstantCameraItem;
 import io.github.mortuusars.exposure_polaroid.world.item.camera.InstantCameraAttachment;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class ExposurePolaroidClient {
@@ -62,7 +63,6 @@ public class ExposurePolaroidClient {
     }
 
     public static class Models {
-        public static final ModelResourceLocation INSTANT_CAMERA_GUI =
-                new ModelResourceLocation(ExposurePolaroid.resource("instant_camera_gui"), "standalone");
+        public static final ResourceLocation INSTANT_CAMERA_GUI = ExposurePolaroid.resource("instant_camera_gui");
     }
 }

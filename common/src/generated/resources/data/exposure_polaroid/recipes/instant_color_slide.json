@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:cyan_dye"
+    },
+    "K": {
+      "item": "minecraft:black_dye"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "M": {
+      "item": "minecraft:magenta_dye"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "Y": {
+      "item": "minecraft:yellow_dye"
+    }
+  },
+  "pattern": [
+    "LKL",
+    "CMY",
+    "PPP"
+  ],
+  "result": {
+    "item": "exposure_polaroid:instant_color_slide"
+  },
+  "show_notification": true
+}

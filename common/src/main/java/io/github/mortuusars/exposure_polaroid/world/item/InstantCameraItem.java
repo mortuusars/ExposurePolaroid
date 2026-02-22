@@ -180,7 +180,7 @@ public class InstantCameraItem extends CameraItem {
     // --
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> components, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack stack, Level context, List<Component> components, TooltipFlag tooltipFlag) {
         if (Config.Client.INSTANT_CAMERA_SHOW_SLIDES_COUNT_IN_TOOLTIP.get()) {
             InstantCameraAttachment.INSTANT_SLIDE.ifPresent(stack, (slideItem, slideStack) -> {
                 int exposed = slideStack.getCount();
@@ -220,9 +220,9 @@ public class InstantCameraItem extends CameraItem {
             // For some unknown reason, inserting slides when camera already has some does not sync it to the server.
             // But only if the player is in "inventory" tab of creative inventory.
             // This fixes it:
-            if (player.isCreative()) {
-                Minecrft.gameMode().handleCreativeModeItemAdd(stack, slot.index);
-            }
+       //     if (player.isCreative()) {
+       //         Minecrft.gameMode().handleCreativeModeItemAdd(stack, slot.index);
+       //     }
             return true;
         }
 
@@ -271,9 +271,9 @@ public class InstantCameraItem extends CameraItem {
     public boolean tick(CameraHolder holder, ItemStack stack) {
         boolean changed = super.tick(holder, stack);
 
-        @Nullable Frame frame = stack.get(Exposure.DataComponents.PHOTOGRAPH_FRAME);
+        @Nullable Frame frame = Exposure.DataComponents.getPhotographFrame(stack);
         if (frame != null && !getShutter().isOpen(stack) && !isOnCooldown(holder, stack)) {
-            stack.remove(Exposure.DataComponents.PHOTOGRAPH_FRAME);
+            Exposure.DataComponents.setPhotographFrame(stack,null);
             printPhotograph(holder, stack, frame);
             return true;
         }
@@ -290,8 +290,8 @@ public class InstantCameraItem extends CameraItem {
                 .orElse(ExposureType.COLOR);
 
         ItemStack photograph = new ItemStack(Exposure.Items.PHOTOGRAPH.get());
-        photograph.set(Exposure.DataComponents.PHOTOGRAPH_FRAME, frame);
-        photograph.set(Exposure.DataComponents.PHOTOGRAPH_TYPE, type);
+        Exposure.DataComponents.setPhotographFrame(photograph, frame);
+        Exposure.DataComponents.setPhotographType(photograph, type);
 
         if (holder instanceof Player player) {
             if (!player.isCreative()) {
@@ -357,7 +357,7 @@ public class InstantCameraItem extends CameraItem {
         }
 
         holder.getServerPlayerAwardedForExposure().ifPresent(serverPlayer ->
-                Exposure.CriteriaTriggers.FRAME_PRINTED.get().trigger(
+                Exposure.ExposureCriteriaTriggers.FRAME_PRINTED.trigger(
                         serverPlayer, holderEntity.blockPosition(), frame, photograph));
 
         if (!level.isClientSide) {
@@ -374,6 +374,6 @@ public class InstantCameraItem extends CameraItem {
 
     @Override
     public void addFrameToFilm(ItemStack stack, Frame frame) {
-        stack.set(Exposure.DataComponents.PHOTOGRAPH_FRAME, frame);
+        Exposure.DataComponents.setPhotographFrame(stack,frame);
     }
 }

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "minecraft:buttons"
+    },
+    "C": {
+      "item": "minecraft:crafting_table"
+    },
+    "F": {
+      "tag": "exposure:flashes"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "III",
+    "BGF",
+    "ICI"
+  ],
+  "result": {
+    "item": "exposure_polaroid:instant_camera"
+  },
+  "show_notification": true
+}

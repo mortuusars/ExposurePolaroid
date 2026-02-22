@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bone_meal"
+    },
+    "K": {
+      "item": "minecraft:black_dye"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    "BKB",
+    "PPP"
+  ],
+  "result": {
+    "item": "exposure_polaroid:instant_black_and_white_slide"
+  },
+  "show_notification": true
+}

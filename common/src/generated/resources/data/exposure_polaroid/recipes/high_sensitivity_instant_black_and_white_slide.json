@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bone_meal"
+    },
+    "C": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "K": {
+      "item": "minecraft:black_dye"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    "BKC",
+    "PPP"
+  ],
+  "result": {
+    "item": "exposure_polaroid:high_sensitivity_instant_black_and_white_slide"
+  },
+  "show_notification": true
+}

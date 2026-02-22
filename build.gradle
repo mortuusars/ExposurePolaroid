@@ -1,7 +1,7 @@
 plugins {
-    id "dev.architectury.loom" version "1.7-SNAPSHOT" apply false
+    id "dev.architectury.loom" version "1.13-SNAPSHOT" apply false
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
+    id 'com.gradleup.shadow' version '8.3.6' apply false
     id "me.modmuss50.mod-publish-plugin" version "0.8.4"
 }
 
@@ -30,6 +30,11 @@ subprojects {
                 name = 'mortuusarsLocal'
                 url = uri(path + "/maven")
             }
+        }
+
+        // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
+        flatDir {
+            dir 'libs'
         }
 
         maven { url "https://maven.neoforged.net/releases/" }
@@ -68,11 +73,6 @@ subprojects {
 
     loom {
         silentMojangMappingsLicense()
-        runs {
-            client {
-                vmArgs '-XX:+AllowEnhancedClassRedefinition', '-XX:HotswapAgent=fatjar'
-            }
-        }
     }
 
     dependencies {
@@ -90,35 +90,37 @@ subprojects {
         // If you remove this line, sources will not be generated.
         withSourcesJar()
 
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        //sourceCompatibility = JavaVersion.VERSION_17
+        //targetCompatibility = JavaVersion.VERSION_17
     }
 
     tasks.withType(JavaCompile).configureEach {
-        it.options.release = 21
+        it.options.release = 17
     }
 
     processResources {
         var expandProps = [
-                minecraft_version                     : minecraft_version,
-                minecraft_version_range               : minecraft_version_range,
-                neoforge_version                      : neoforge_version,
-                neoforge_version_range                : neoforge_version_range,
-                neoforge_loader_version_range         : neoforge_loader_version_range,
-                mod_id                                : mod_id,
-                mod_name                              : mod_name,
-                mod_version                           : mod_version,
-                mod_authors                           : mod_authors,
-                mod_description                       : mod_description,
-                mod_issues                            : mod_issues,
-                mod_page                              : mod_page,
-                mod_github                            : mod_github,
-                mod_license                           : mod_license,
-                maven_group                           : maven_group,
+                minecraft_version          : minecraft_version,
+                minecraft_version_range    : minecraft_version_range,
+                forge_version              : forge_version,
+                forge_version_range        : forge_version_range,
+                forge_loader_version_range : forge_loader_version_range,
+                create_version_range       : create_version_range,
+                create_version_range_reason: create_version_range_reason,
                 required_exposure_version_range_forge : required_exposure_version_range_forge,
-                required_exposure_version_range_fabric: required_exposure_version_range_fabric
+                required_exposure_version_range_fabric : required_exposure_version_range_fabric,
+                mod_id                     : mod_id,
+                mod_name                   : mod_name,
+                mod_version                : mod_version,
+                mod_authors                : mod_authors,
+                mod_description            : mod_description,
+                mod_issues                 : mod_issues,
+                mod_page                   : mod_page,
+                mod_github                 : mod_github,
+                mod_license                  : mod_license,
+                maven_group                  : maven_group
         ]
-        filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/neoforge.mods.toml', "*.mixins.json"]) {
+        filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/mods.toml', "*.mixins.json"]) {
             expand expandProps
         }
         inputs.properties(expandProps)
@@ -184,7 +186,7 @@ task printLatestVersionChangelog {
     }
 }
 
-publishMods {
+/*publishMods {
     changelog = project.ext.changelog
     type = STABLE
     dryRun = providers.environmentVariable("CURSEFORGE_TOKEN").getOrNull() == null || providers.environmentVariable("MODRINTH_TOKEN").getOrNull() == null
@@ -237,4 +239,4 @@ publishMods {
         requires("fabric-api")
         requires("exposure")
     }
-}
+}*/
