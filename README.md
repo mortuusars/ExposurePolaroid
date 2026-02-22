@@ -3,8 +3,8 @@
     <br>
   <img src="https://img.shields.io/badge/NeoForge/Forge/Fabric-1.20.1/1.21.1-e04e14" alt="NeoForge/Forge/Fabric 1.20.1/1.21.1">
     <br>
-  <a href="https://curseforge.com/minecraft/mc-mods/exposure"><img src="https://cf.way2muchnoise.eu/871755.svg" alt="curseforge"></a>
-  <a href="https://modrinth.com/mod/exposure"><img src="https://img.shields.io/modrinth/dt/hB899VmG?logo=modrinth&label=&suffix=%20&style=flat&color=242629&labelColor=5ca424&logoColor=1c1c1c" alt="modrinth"></a>
+  <a href="https://curseforge.com/minecraft/mc-mods/exposure-polaroid"><img src="https://cf.way2muchnoise.eu/1207005.svg" alt="curseforge"></a>
+  <a href="https://modrinth.com/mod/exposure-polaroid"><img src="https://img.shields.io/modrinth/dt/WEWiqYkW?logo=modrinth&label=&suffix=%20&style=flat&color=242629&labelColor=5ca424&logoColor=1c1c1c" alt="modrinth"></a>
   <br>
 </div>
 
