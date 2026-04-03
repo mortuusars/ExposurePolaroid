@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.3 - 2026-04-03
+- Added Japanese translation.
+
 ## 1.1.2 - 2025-05-26
 - Fixed copying Black and White photographs made with Instant Camera not using correct dyes.
   - Will only apply to new photographs.
