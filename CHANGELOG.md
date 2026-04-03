@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.3 - 2026-04-03
+- Added Japanese translation.
+
 ## 1.1.2 - 1.20.1 - 2026-02-22
 - Backport to 1.20.1.
   - Most of the work was done by _Tfarcenim_ who was commissioned by _MonoRedBaron_.
