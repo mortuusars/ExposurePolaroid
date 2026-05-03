@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.4 - 2026-05-03
+- Added pt_BR translation.
+
 ## 1.1.3 - 2026-04-03
 - Added Japanese translation.
 
