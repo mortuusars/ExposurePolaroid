@@ -49,7 +49,7 @@ dependencies {
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
     implementation(include("io.github.llamalad7:mixinextras-neoforge:0.4.1"))
 
-    modImplementation("io.github.mortuusars.exposure:exposure-${minecraft_version}-neoforge:${exposure_version}")
+    modImplementation("io.github.mortuusars.exposure:exposure-${minecraft_version}-neoforge:${exposure_version}") { transitive = false }
 
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}") { transitive = false }
     modRuntimeOnly("io.github.mortuusars.exposure_catalog:exposure_catalog-neoforge:${minecraft_version}-${exposure_catalog_version}")
