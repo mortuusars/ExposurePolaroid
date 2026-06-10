@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.5 - 2026-06-10
+- Added ko_KR translation.
+
 ## 1.1.4 - 2026-05-03
 - Added pt_BR translation.
 
