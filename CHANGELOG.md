@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.6 - 2026-07-29
+[NeoForge] -Fixed mod icon missing 
+
 ## 1.1.5 - 2026-06-10
 - Added ko_KR translation.
 
