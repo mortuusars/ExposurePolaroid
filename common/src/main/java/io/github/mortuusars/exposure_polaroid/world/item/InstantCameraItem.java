@@ -250,6 +250,11 @@ public class InstantCameraItem extends CameraItem {
 
     @Override
     public InteractionResult handleStandSneakInteraction(CameraStandEntity stand, Player player, InteractionHand hand, ItemStack cameraStack) {
+        // Fixes CarryOn pickup creating ghost slides on the client:
+        if (player.level().isClientSide()) {
+            return InteractionResult.CONSUME;
+        }
+
         return super.handleStandSneakInteraction(stand, player, hand, cameraStack);
     }
 
